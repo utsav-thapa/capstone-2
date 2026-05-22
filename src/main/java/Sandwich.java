@@ -8,7 +8,7 @@ public class Sandwich {
         private boolean extraMeat;
         private double price;
 
-        private ArrayList<Topping> toppings;
+        private ArrayList<Topping> toppings = new ArrayList<>();
 
     public Sandwich() {
     }
@@ -29,9 +29,9 @@ public class Sandwich {
         this.size = size;
     }
 
-    public void setToppings(ArrayList<Topping> toppings) {
-        this.toppings = toppings;
-    }
+//    public void setToppings(ArrayList<Topping> toppings) {
+//        this.toppings = toppings;
+//    }
 
 
     public double getPrice() {
@@ -70,8 +70,8 @@ public class Sandwich {
 
     }
 
-    public void addTopping(Topping topping) {
-        toppings.add(topping);
+    public void addTopping(Topping a) {
+        toppings.add(a);
 
     }
 }
