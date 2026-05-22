@@ -71,6 +71,7 @@ public class Sandwich {
     }
 
     public void addTopping(Topping topping) {
+        toppings.add(topping);
 
     }
 }
