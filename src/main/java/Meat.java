@@ -1,4 +1,8 @@
-package PACKAGE_NAME;
-
 public enum Meat {
+    STEAK,
+    HAM,
+    SALAMI,
+    ROASTBEEF,
+    CHICKEN,
+    BACON
 }

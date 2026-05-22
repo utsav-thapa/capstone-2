@@ -1,4 +1,4 @@
-public enum Toppings {
+public enum Topping {
     LETTUCE,
     PEPPERS,
     ONIONS,

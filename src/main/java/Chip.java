@@ -1,2 +1,5 @@
-public class Chips {
+public class Chip {
+    public double getPrice() {
+        return 1.50;
+    }
 }

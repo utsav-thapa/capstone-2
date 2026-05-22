@@ -1,4 +1,6 @@
-package PACKAGE_NAME;
-
 public enum Bread {
+    WHITE,
+    WHEAT,
+    EYE,
+    WRAP
 }
