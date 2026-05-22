@@ -11,15 +11,16 @@ public class Main {
         s1.addTopping(Topping.LETTUCE);
         s1.addTopping(Topping.PICKLES);
 
-        s1.getPrice();
+        System.out.println(s1.getPrice());
 
 
 
 
         Drink d1 = new Drink(Size.MEDIUM);
-        d1.getPrice();
+        System.out.println(d1.getPrice());
 
         Chip c1 = new Chip();
+        System.out.println(c1.getPrice());
 
         order.addSandwich(s1);
         order.addDrink(d1);
