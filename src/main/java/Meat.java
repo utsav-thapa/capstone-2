@@ -4,5 +4,6 @@ public enum Meat {
     SALAMI,
     ROASTBEEF,
     CHICKEN,
-    BACON
+    BACON,
+    NO_MEAT
 }

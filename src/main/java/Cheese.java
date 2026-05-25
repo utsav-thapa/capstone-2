@@ -2,5 +2,6 @@ public enum Cheese {
     AMERICAN,
     PROVOLONE,
     CHEDDAR,
-    SWISS
+    SWISS,
+    NO_CHEESE
 }

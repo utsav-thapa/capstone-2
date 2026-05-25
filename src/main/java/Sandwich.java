@@ -2,19 +2,22 @@ import java.util.ArrayList;
 
 public class Sandwich {
 
-        private Size size;
-        private Bread bread;
-        private Meat meat;
-        private boolean extraMeat;
-        private double price;
+    private Size size;
+    private Bread bread;
+    private Meat meat;
+    private boolean extraMeat;
+    private double price;
+    private Cheese cheese;
+    private boolean extraCheese;
+    private Sauce sauce;
 
-        private ArrayList<Topping> toppings = new ArrayList<>();
+    private ArrayList<Topping> toppings = new ArrayList<>();
 
     public Sandwich() {
     }
 
     public void setMeat(Meat meat) {
-            this.meat = meat;
+        this.meat = meat;
     }
 
     public void setBread(Bread bread) {
@@ -29,9 +32,27 @@ public class Sandwich {
         this.size = size;
     }
 
-//    public void setToppings(ArrayList<Topping> toppings) {
-//        this.toppings = toppings;
-//    }
+    public void setSauce(Sauce sauce) {this.sauce = sauce;}
+
+    public boolean isExtraCheese() {
+        return extraCheese;
+    }
+
+    public void setExtraCheese(boolean extraCheese) {
+        this.extraCheese = extraCheese;
+    }
+
+    public Cheese getCheese() {
+        return cheese;
+    }
+
+    public void setCheese(Cheese cheese) {
+        this.cheese = cheese;
+    }
+
+    public void setToppings(ArrayList<Topping> toppings) {
+        this.toppings = toppings;
+    }
 
 
     public double getPrice() {
@@ -48,23 +69,41 @@ public class Sandwich {
 //            default:
 //                throw new RuntimeException("Illegal size");
         }
-        //...
 
-        if(this.extraMeat) {
-            switch(this.size){
+        if (!this.meat.equals(Meat.NO_MEAT)){
+            switch(this.size) {
                 case SMALL:
-                    price += .50;
-                    break;
-                case MEDIUM:
                     price += 1.00;
                     break;
-                case LARGE:
-                    price += 1.50;
+                case MEDIUM:
+                    price += 2.00;
                     break;
+                case LARGE:
+                    price += 3.00;
+                    break;
+                default:
+                    throw new RuntimeException("what are you doing?");
+            }
+
+
+            if(this.extraMeat) {
+                switch(this.size){
+                    case SMALL:
+                        price += .50;
+                        break;
+                    case MEDIUM:
+                        price += 1.00;
+                        break;
+                    case LARGE:
+                        price += 1.50;
+                        break;
 //                default:
 //                    throw new RuntimeException("Illegal size");
+                }
+
+
+
             }
-           //todo: size dependant
         }
         return price;
 

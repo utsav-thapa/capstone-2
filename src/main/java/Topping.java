@@ -6,5 +6,6 @@ public enum Topping {
     JALAPENOS,
     PICKLES,
     GUACAMOLE,
-    MUSHROOMS
+    MUSHROOMS,
+    CUCUMBERS
 }
