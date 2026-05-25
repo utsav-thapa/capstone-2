@@ -101,7 +101,37 @@ public class Sandwich {
 //                    throw new RuntimeException("Illegal size");
                 }
 
+                if (!this.cheese.equals(Cheese.NO_CHEESE)){
+                    switch (this.size){
+                        case SMALL:
+                            price += .75;
+                            break;
+                        case MEDIUM:
+                            price += 1.50;
+                            break;
+                        case LARGE:
+                            price += 2.25;
+                            break;
+                        default:
+                            throw new RuntimeException("Do you want cheese or not?");
+                    }
+                }
+                if (this.extraCheese){
+                    switch (this.size){
+                        case SMALL:
+                        price += .30;
+                        break;
+                        case MEDIUM:
+                            price += .60;
+                            break;
+                        case LARGE:
+                            price += .90;
+                            break;
+                        default:
+                            throw new RuntimeException("So you don't want cheese eh?");
+                    }
 
+                }
 
             }
         }
