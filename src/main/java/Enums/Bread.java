@@ -3,6 +3,6 @@ package Enums;
 public enum Bread {
     WHITE,
     WHEAT,
-    EYE,
+    RYE,
     WRAP
 }
