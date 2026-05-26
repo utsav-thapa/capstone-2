@@ -44,10 +44,14 @@ public class Main {
 
         System.out.println("Total: $" + order.getValue());
 
-        order.processOrder();
+//        order.processOrder();
+
         System.out.println("---------------------");
 
         System.out.println(order.processOrder(order));
+
+        ReceiptsFileManager fileManager = new ReceiptsFileManager();
+        fileManager.saveReceipt(order);
 
 
 
