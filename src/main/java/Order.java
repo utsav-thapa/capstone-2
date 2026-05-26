@@ -65,14 +65,29 @@ public class Order{
     public void processOrder(){
         double cost = 0;
 
-        System.out.println("Order for " + this.orderName);
+        System.out.println("Order for " + getOrderName());
 
-        if (!getSandwichs().isEmpty()) {
-            System.out.println("Sandwich");
+        if (sandwichs.size() > 0) {
             for (Sandwich a : getSandwichs()) {
-                System.out.println("Sandwich Size: " + a.getSize());
+                System.out.println("Sandwich");
+                System.out.print("Sandwich Size: ");
+                switch(a.getSize()){
+                    case SMALL:
+                        System.out.println("4\"");
+                        break;
+                    case MEDIUM:
+                        System.out.println("8\"");
+                        break;
+                    case LARGE:
+                        System.out.println("12\"");
+                        break;
+                    default:
+                        throw new RuntimeException("The system has broken.");
+
+
+                }
                 System.out.print("Meat: " + a.getMeat());
-                System.out.println(" | Extra meat:" + a.isExtraMeat());
+                System.out.println(" | Extra Meat: " + a.isExtraMeat());
                 System.out.print("Cheese: " + a.getCheese());
                 System.out.println(" | Extra Cheese: " + a.isExtraCheese());
                 System.out.println("Toppings");
@@ -81,26 +96,31 @@ public class Order{
                 }
                 System.out.println("Sauce: " + a.getSauce());
                 cost += a.getPrice();
-                System.out.println("Price: $" + a.getPrice() );
+                System.out.println("Sandwich Price: $" + a.getPrice() );
 
             }
 
         }
-        if (!getChips().isEmpty()){
+        if (chips.size() > 0){
             System.out.println("Chips");
+            double chipsCost = 0;
             for (Chip c : getChips()){
                 cost += c.getPrice();
-                System.out.println("Price: $" + c.getPrice());
+                chipsCost += c.getPrice();
             }
+            System.out.println("Chips Price: $" + chipsCost);
+
         }
 
-        if (!getDrinks().isEmpty()){
+        if (drinks.size()>0){
             System.out.println("Drinks");
+            double drinksCost = 0;
             for (Drink d :getDrinks()){
                 System.out.println("Drink: " + d.getSize());
                 cost += d.getPrice();
-                System.out.println("Price: $" + d.getPrice());
+                drinksCost += d.getPrice();
             }
+            System.out.println("Drinks Price: $" +drinksCost);
         }
         System.out.println("Total Cost: $" + cost);
     }
