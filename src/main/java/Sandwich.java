@@ -1,3 +1,5 @@
+import Enums.*;
+
 import java.util.ArrayList;
 
 public class Sandwich {

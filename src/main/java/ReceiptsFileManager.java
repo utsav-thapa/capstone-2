@@ -1,6 +1,8 @@
 
 
-public class OrderManager {
+public class ReceiptsFileManager {
+
+
 //    public void processOrder(){
 //        Order order = new Order("order");
 //        double cost = 0;
@@ -10,16 +12,16 @@ public class OrderManager {
 //        if (!order.getSandwichs().isEmpty()) {
 //            System.out.println("Sandwich");
 //            for (Sandwich a : order.getSandwichs()) {
-//                System.out.println("Sandwich Size: " + a.getSize());
-//                System.out.println("Meat: " + a.getMeat());
+//                System.out.println("Sandwich Enums.Size: " + a.getSize());
+//                System.out.println("Enums.Meat: " + a.getMeat());
 //                System.out.print(" | Extra meat:" + a.isExtraMeat());
-//                System.out.println("Cheese: " + a.getCheese());
-//                System.out.print(" | Extra Cheese" + a.isExtraCheese());
+//                System.out.println("Enums.Cheese: " + a.getCheese());
+//                System.out.print(" | Extra Enums.Cheese" + a.isExtraCheese());
 //                System.out.println("Toppings");
-//                for (Topping t: a.getToppings()){
+//                for (Enums.Topping t: a.getToppings()){
 //                    System.out.println(t);
 //                }
-//                System.out.println("Sauce: " + a.getSauce());
+//                System.out.println("Enums.Sauce: " + a.getSauce());
 //                cost += a.getPrice();
 //                System.out.println("Price: $" + a.getPrice() );
 //

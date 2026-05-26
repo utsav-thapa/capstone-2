@@ -1,3 +1,5 @@
+import Enums.Size;
+
 public class Drink {
     Size size;
 

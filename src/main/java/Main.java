@@ -1,6 +1,8 @@
+import Enums.*;
+
 public class Main {
     public static void main(String[] args) {
-        OrderManager manager = new OrderManager();
+        ReceiptsFileManager manager = new ReceiptsFileManager();
 
 
         Order order = new Order("Utsav");
@@ -43,6 +45,9 @@ public class Main {
         System.out.println("Total: $" + order.getValue());
 
         order.processOrder();
+        System.out.println("---------------------");
+
+        System.out.println(order.processOrder(order));
 
 
 
