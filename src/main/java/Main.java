@@ -1,5 +1,8 @@
 public class Main {
     public static void main(String[] args) {
+        OrderManager manager = new OrderManager();
+
+
         Order order = new Order("Utsav");
 
         Sandwich s1 = new Sandwich();
@@ -38,6 +41,9 @@ public class Main {
         order.addChip(c1);
 
         System.out.println("Total: $" + order.getValue());
+
+        order.processOrder();
+
 
 
         // TODO: create the class and save it in file

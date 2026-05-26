@@ -41,4 +41,67 @@ public class Order{
     public void addDrink(Drink d1){
         drinks.add(d1);
     }
+
+    public ArrayList<Sandwich> getSandwichs() {
+        return sandwichs;
+    }
+
+    public ArrayList<Drink> getDrinks() {
+        return drinks;
+    }
+
+    public ArrayList<Chip> getChips() {
+        return chips;
+    }
+
+    public String getOrderName() {
+        return orderName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void processOrder(){
+        double cost = 0;
+
+        System.out.println("Order for " + this.orderName);
+
+        if (!getSandwichs().isEmpty()) {
+            System.out.println("Sandwich");
+            for (Sandwich a : getSandwichs()) {
+                System.out.println("Sandwich Size: " + a.getSize());
+                System.out.print("Meat: " + a.getMeat());
+                System.out.println(" | Extra meat:" + a.isExtraMeat());
+                System.out.print("Cheese: " + a.getCheese());
+                System.out.println(" | Extra Cheese: " + a.isExtraCheese());
+                System.out.println("Toppings");
+                for (Topping t: a.getToppings()){
+                    System.out.println(t);
+                }
+                System.out.println("Sauce: " + a.getSauce());
+                cost += a.getPrice();
+                System.out.println("Price: $" + a.getPrice() );
+
+            }
+
+        }
+        if (!getChips().isEmpty()){
+            System.out.println("Chips");
+            for (Chip c : getChips()){
+                cost += c.getPrice();
+                System.out.println("Price: $" + c.getPrice());
+            }
+        }
+
+        if (!getDrinks().isEmpty()){
+            System.out.println("Drinks");
+            for (Drink d :getDrinks()){
+                System.out.println("Drink: " + d.getSize());
+                cost += d.getPrice();
+                System.out.println("Price: $" + d.getPrice());
+            }
+        }
+        System.out.println("Total Cost: $" + cost);
+    }
 }

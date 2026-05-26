@@ -66,8 +66,8 @@ public class Sandwich {
             case LARGE:
                 price = 8.50;
                 break;
-//            default:
-//                throw new RuntimeException("Illegal size");
+            default:
+                throw new RuntimeException("Illegal size");
         }
 
         if (!this.meat.equals(Meat.NO_MEAT)){
@@ -82,7 +82,7 @@ public class Sandwich {
                     price += 3.00;
                     break;
                 default:
-                    throw new RuntimeException("what are you doing?");
+                    throw new RuntimeException("You don't want any meat then?");
             }
 
 
@@ -97,8 +97,8 @@ public class Sandwich {
                     case LARGE:
                         price += 1.50;
                         break;
-//                default:
-//                    throw new RuntimeException("Illegal size");
+                    default:
+                        throw new RuntimeException("Illegal size");
                 }
 
                 if (!this.cheese.equals(Cheese.NO_CHEESE)){
@@ -119,8 +119,8 @@ public class Sandwich {
                 if (this.extraCheese){
                     switch (this.size){
                         case SMALL:
-                        price += .30;
-                        break;
+                            price += .30;
+                            break;
                         case MEDIUM:
                             price += .60;
                             break;
@@ -130,17 +130,37 @@ public class Sandwich {
                         default:
                             throw new RuntimeException("So you don't want cheese eh?");
                     }
-
                 }
-
             }
         }
         return price;
-
     }
 
     public void addTopping(Topping a) {
         toppings.add(a);
+    }
 
+    public Size getSize() {
+        return size;
+    }
+
+    public Bread getBread() {
+        return bread;
+    }
+
+    public Meat getMeat() {
+        return meat;
+    }
+
+    public boolean isExtraMeat() {
+        return extraMeat;
+    }
+
+    public Sauce getSauce() {
+        return sauce;
+    }
+
+    public ArrayList<Topping> getToppings() {
+        return toppings;
     }
 }

@@ -24,4 +24,8 @@ public class Drink {
 
         return price;
     }
+
+    public Size getSize() {
+        return size;
+    }
 }
