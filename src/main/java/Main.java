@@ -7,10 +7,8 @@ public class Main {
 
         Order order = new Order("Utsav");
 
-        Sandwich s1 = new Sandwich();
-        s1.setSize(Size.MEDIUM);
+        Sandwich s1 = new Sandwich(Size.LARGE,Bread.WHITE);
         s1.setMeat(Meat.CHICKEN);
-        s1.setBread(Bread.WHEAT);
         s1.setCheese(Cheese.SWISS);
         s1.setExtraCheese(true);
         s1.setExtraMeat(true);
@@ -51,7 +49,11 @@ public class Main {
         System.out.println(order.processOrder(order));
 
         ReceiptsFileManager fileManager = new ReceiptsFileManager();
-        fileManager.saveReceipt(order);
+//        fileManager.saveReceipt(order);
+
+        Ui mainScreen = new Ui();
+
+
 
 
 

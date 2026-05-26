@@ -15,7 +15,9 @@ public class Sandwich {
 
     private ArrayList<Topping> toppings = new ArrayList<>();
 
-    public Sandwich() {
+    public Sandwich(Size size, Bread bread) {
+        this.size =size;
+        this.bread = bread;
     }
 
     public void setMeat(Meat meat) {

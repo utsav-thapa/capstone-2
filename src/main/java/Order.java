@@ -153,6 +153,7 @@ public class Order{
 
 
                 }
+                output.append("Bread type: ").append(a.getBread()).append("\n");
                 output.append("Meat: ").append(a.getMeat());
                 output.append(" | Extra Meat: ").append(a.isExtraMeat()).append("\n");
                 output.append("Cheese: ").append(a.getCheese());
