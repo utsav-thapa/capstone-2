@@ -116,6 +116,7 @@ public class Ui {
                     break;
                 case "0":
                    running = false;
+                   break;
                 default:
                     System.err.println("Wrong input!");
             }
