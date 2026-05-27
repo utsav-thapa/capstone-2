@@ -1,4 +1,5 @@
 import Enums.Bread;
+import Enums.Cheese;
 import Enums.Meat;
 import Enums.Size;
 
@@ -7,6 +8,7 @@ import java.util.Scanner;
 public class Ui {
 
     private Scanner scanner = new Scanner(System.in);
+    String enter = "\nEnter:";
 
 
     public void mainScreen() {
@@ -19,7 +21,7 @@ public class Ui {
                     0. Exit
                     """;
 
-            System.out.println(homeScreen);
+            System.out.println(homeScreen + enter);
 
 
             int userInput = Integer.parseInt(scanner.nextLine());
@@ -57,7 +59,7 @@ public class Ui {
                     0. Exit
                     """;
 
-            System.out.println(orderScreen);
+            System.out.println(orderScreen + enter);
             int userInput = Integer.parseInt(scanner.nextLine());
 
             switch (userInput) {
@@ -90,8 +92,8 @@ public class Ui {
                 2. Wheat
                 3. Rye
                 4. Wrap
-                Enter: """;
-        System.out.println(breadTypeMenu);
+                """;
+        System.out.println(breadTypeMenu + enter);
         int breadTypeInput = Integer.parseInt(scanner.nextLine());
         Bread breadType = switch (breadTypeInput) {
             case 1 -> Bread.WHITE;
@@ -106,7 +108,7 @@ public class Ui {
                 1. 4"
                 2. 8"
                 3. 12"
-                Enter: """;
+                """;
         System.out.print(breadSizeMenu);
 
         int sizeInput = Integer.parseInt(scanner.nextLine());
@@ -128,7 +130,7 @@ public class Ui {
                 4. Sauces
                 """;
 
-        System.out.println(toppingsMenu);
+        System.out.println(toppingsMenu + enter);
 
         int toppingSelection = Integer.parseInt(scanner.nextLine());
 
@@ -165,7 +167,7 @@ public class Ui {
                 6. Bacon
                 0. No Meat
                 """;
-        System.out.println(meatOptions);
+        System.out.println(meatOptions + enter);
 
         int meatInput = Integer.parseInt(scanner.nextLine());
 
@@ -174,30 +176,60 @@ public class Ui {
             case 1 -> Meat.STEAK;
             case 2 -> Meat.HAM;
             case 3 -> Meat.SALAMI;
-            case 4 -> Meat.ROASTBEEF;
+            case 4 -> Meat.ROAST_BEEF;
             case 5 -> Meat.CHICKEN;
             case 6 -> Meat.BACON;
             case 0 -> Meat.NO_MEAT;
             default -> throw new IllegalArgumentException("Wrong type of Meat!");
         };
         sandwich.setMeat(meat);
+        System.out.println("Sandwich meat: " + meat.toString() + " selected.");
 
         if (!meat.equals(Meat.NO_MEAT)) {
-            System.out.println("Would you like extra Meat? (Y/N)");
+            System.out.println("Would you like extra Meat? (Y/N)" + "\nEnter: ");
 
             String extraMeat = scanner.nextLine();
             if (extraMeat.equalsIgnoreCase("Y")){
                 sandwich.setExtraMeat(true);
+                System.out.println("Extra Meat added.");
             }
         }
     }
 
     private void addCheese(Sandwich sandwich) {
-        String cheeseOptions;
+        String cheeseOptions = """
+                Here are the cheese options.
+                1. American
+                2. Provolone
+                3. Cheddar
+                4. Swiss
+                0. No Cheese
+                """;
+        System.out.print(cheeseOptions + enter);
+        int cheeseInput = Integer.parseInt(scanner.nextLine());
 
+        Cheese cheese = switch (cheeseInput){
+            case 1 -> Cheese.AMERICAN;
+            case 2 -> Cheese.PROVOLONE;
+            case 3 -> Cheese.CHEDDAR;
+            case 4 -> Cheese.SWISS;
+            case 0 -> Cheese.NO_CHEESE;
+            default -> throw new IllegalArgumentException("Wrong cheese type.");
+        };
+
+        sandwich.setCheese(cheese);
+
+        if (!cheese.equals(Cheese.NO_CHEESE)) {
+            System.out.println("Would you like extra cheese? (Y/N)");
+            String extraCheese = scanner.nextLine();
+            if (extraCheese.equalsIgnoreCase("Y")){
+                sandwich.setExtraCheese(true);
+            }
+        }
     }
 
     private void addToppings(Sandwich sandwich) {
+        //TODO: add toppings
 
     }
 
@@ -215,6 +247,7 @@ public class Ui {
     }
 
     private void checkout(Order order) {
+
     }
 
 

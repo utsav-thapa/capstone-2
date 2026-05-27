@@ -4,7 +4,7 @@ public enum Meat {
     STEAK,
     HAM,
     SALAMI,
-    ROASTBEEF,
+    ROAST_BEEF,
     CHICKEN,
     BACON,
     NO_MEAT
