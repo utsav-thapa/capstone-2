@@ -18,19 +18,18 @@ public class Ui {
             System.out.println(homeScreen + "Enter:" );
 
 
-            int userInput = Integer.parseInt(scanner.nextLine());
+            String userInput = scanner.nextLine();
 
             switch (userInput) {
-                case 1:
+                case "1":
                     newOrder();
                     break;
-                case 0:
+                case "0":
                     System.out.println("Thank you for visiting deli-cious sandwich shop.");
                     running = false;
                     break;
                 default:
                     System.err.println("Wrong input! Try again!");
-                    break;
             }
         } while (running);
     }
@@ -54,22 +53,22 @@ public class Ui {
                     """;
 
             System.out.println(orderScreen + "Enter: ");
-            int userInput = Integer.parseInt(scanner.nextLine());
+            String userInput = scanner.nextLine();
 
             switch (userInput) {
-                case 1:
+                case "1":
                     addSandwich(order);
                     break;
-                case 2:
+                case "2":
                     addDrink(order);
                     break;
-                case 3:
+                case "3":
                     addChips(order);
                     break;
-                case 4:
+                case "4":
                     checkout(order);
                     break;
-                case 0:
+                case "0":
                     running = false;
                     break;
                 default:
@@ -103,6 +102,7 @@ public class Ui {
 
             switch (toppingSelection) {
                 case "1":
+                    //TODO: change it so that the user can only add meat once
                     addMeat(sandwich);
                     break;
                 case "2":
@@ -115,8 +115,8 @@ public class Ui {
                     addSauce(sandwich);
                     break;
                 case "0":
-                   running = false;
-                   break;
+                    running = false;
+                    break;
                 default:
                     System.err.println("Wrong input!");
             }
@@ -198,52 +198,52 @@ public class Ui {
         Meat meat = null;
         do {
             String meatOptions = """
-                    Here are the meat options:
-                    1. Steak
-                    2. Ham
-                    3. Salami
-                    4. Roast Beef
-                    5. Chicken
-                    6. Bacon
-                    0. No Meat
-                    """;
-            System.out.println(meatOptions + "\nEnter: ");
+                        Here are the meat options:
+                        1. Steak
+                        2. Ham
+                        3. Salami
+                        4. Roast Beef
+                        5. Chicken
+                        6. Bacon
+                        0. No Meat
+                        """;
+            System.out.println(meatOptions + "Enter: ");
 
-            int meatInput = Integer.parseInt(scanner.nextLine());
+            String meatInput = scanner.nextLine();
 
             switch (meatInput) {
-                case 1:
+                case "1":
                     meat = Meat.STEAK;
                     running = false;
                     break;
-                case 2:
+                case "2":
                     meat = Meat.HAM;
                     running = false;
                     break;
-                case 3:
+                case "3":
                     meat = Meat.SALAMI;
                     running = false;
                     break;
-                case 4:
+                case "4":
                     meat = Meat.ROAST_BEEF;
                     running = false;
                     break;
-                case 5:
+                case "5":
                     meat = Meat.CHICKEN;
                     running = false;
                     break;
-                case 6:
+                case "6":
                     meat = Meat.BACON;
                     running = false;
                     break;
-                case 0:
+                case "0":
                     meat = Meat.NO_MEAT;
                     running = false;
                     break;
                 default:
                     System.err.println("Wrong type of Meat!");
             }
-        } while (running);
+        } while (running) ;
 
         sandwich.setMeat(meat);
         System.out.println("Sandwich meat: " + meat.toString() + " selected.");
@@ -257,6 +257,7 @@ public class Ui {
                 System.out.println("Extra Meat added.");
             }
         }
+
     }
 
     private void addCheese(Sandwich sandwich) {
