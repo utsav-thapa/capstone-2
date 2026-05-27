@@ -1,4 +1,5 @@
 import Enums.Bread;
+import Enums.Meat;
 import Enums.Size;
 
 import java.util.Scanner;
@@ -119,11 +120,90 @@ public class Ui {
 
         Sandwich sandwich = new Sandwich(breadType, breadSize);
 
+        String toppingsMenu = """
+                Below is the toppings Menu:
+                1. Meat
+                2. Cheese
+                3. Other toppings
+                4. Sauces
+                """;
+
+        System.out.println(toppingsMenu);
+
+        int toppingSelection = Integer.parseInt(scanner.nextLine());
+
+        switch (toppingSelection) {
+            case 1:
+                addMeat(sandwich);
+                break;
+            case 2:
+                addCheese(sandwich);
+                break;
+            case 3:
+                addToppings(sandwich);
+                break;
+            case 4:
+                addSauce(sandwich);
+                break;
+            default:
+                throw new IllegalArgumentException("Wrong topping input!");
+        }
+
+
 
 
     }
 
+    private void addMeat(Sandwich sandwich) {
+        String meatOptions = """
+                Here are the meat options:
+                1. Steak
+                2. Ham
+                3. Salami
+                4. Roast Beef
+                5. Chicken
+                6. Bacon
+                0. No Meat
+                """;
+        System.out.println(meatOptions);
 
+        int meatInput = Integer.parseInt(scanner.nextLine());
+
+
+        Meat meat = switch (meatInput) {
+            case 1 -> Meat.STEAK;
+            case 2 -> Meat.HAM;
+            case 3 -> Meat.SALAMI;
+            case 4 -> Meat.ROASTBEEF;
+            case 5 -> Meat.CHICKEN;
+            case 6 -> Meat.BACON;
+            case 0 -> Meat.NO_MEAT;
+            default -> throw new IllegalArgumentException("Wrong type of Meat!");
+        };
+        sandwich.setMeat(meat);
+
+        if (!meat.equals(Meat.NO_MEAT)) {
+            System.out.println("Would you like extra Meat? (Y/N)");
+
+            String extraMeat = scanner.nextLine();
+            if (extraMeat.equalsIgnoreCase("Y")){
+                sandwich.setExtraMeat(true);
+            }
+        }
+    }
+
+    private void addCheese(Sandwich sandwich) {
+        String cheeseOptions;
+
+    }
+
+    private void addToppings(Sandwich sandwich) {
+
+    }
+
+    private void addSauce(Sandwich sandwich) {
+
+    }
 
 
     private void addDrink(Order order) {
