@@ -12,7 +12,7 @@ public class ReceiptsFileManager {
         String now = rightNow.format(formatter);
 
         try {
-            FileWriter fileWriter = new FileWriter("src/main/resources/"+ now + ".txt");
+            FileWriter fileWriter = new FileWriter("src/main/resources/Receipts"+ now + ".txt");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(order.processOrder(order));
