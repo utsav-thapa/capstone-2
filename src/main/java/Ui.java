@@ -1,15 +1,9 @@
-import Enums.Bread;
-import Enums.Cheese;
-import Enums.Meat;
-import Enums.Size;
+import Enums.*;
 
 import java.util.Scanner;
 
 public class Ui {
-
-    private Scanner scanner = new Scanner(System.in);
-    String enter = "\nEnter:";
-
+    private static Scanner scanner = new Scanner(System.in);
 
     public void mainScreen() {
         boolean running = true;
@@ -21,7 +15,7 @@ public class Ui {
                     0. Exit
                     """;
 
-            System.out.println(homeScreen + enter);
+            System.out.println(homeScreen + "Enter:" );
 
 
             int userInput = Integer.parseInt(scanner.nextLine());
@@ -59,7 +53,7 @@ public class Ui {
                     0. Exit
                     """;
 
-            System.out.println(orderScreen + enter);
+            System.out.println(orderScreen + "Enter: ");
             int userInput = Integer.parseInt(scanner.nextLine());
 
             switch (userInput) {
@@ -79,109 +73,177 @@ public class Ui {
                     running = false;
                     break;
                 default:
-                    throw new RuntimeException("Are you trying to break to system?");
+                    System.err.println("Are you trying to break to system? Try again!");
             }
         } while (running);
     }
 
 
     private void addSandwich(Order order) {
-        String breadTypeMenu = """
+        Sandwich sandwich = new Sandwich();
+        breadTypeSelection(sandwich);
+
+        breadSizeSelection(sandwich);
+
+        boolean running = true;
+        do {
+            String toppingsMenu = """
+                    What would you like to add to your sandwich?
+                    
+                    1. Meat
+                    2. Cheese
+                    3. Other toppings
+                    4. Select Sauces
+                    0. Exit
+                    """;
+
+            System.out.println(toppingsMenu + "Enter: ");
+
+            String toppingSelection = scanner.nextLine();
+
+            switch (toppingSelection) {
+                case "1":
+                    addMeat(sandwich);
+                    break;
+                case "2":
+                    addCheese(sandwich);
+                    break;
+                case "3":
+                    addToppings(sandwich);
+                    break;
+                case "4":
+                    addSauce(sandwich);
+                    break;
+                case "0":
+                   running = false;
+                default:
+                    System.err.println("Wrong input!");
+            }
+        } while (running);
+    }
+
+    private void breadSizeSelection(Sandwich sandwich) {
+        boolean running = true;
+        do {
+            String breadSizeMenu = """
+                    Select the bread size:
+                    1. 4"
+                    2. 8"
+                    3. 12"
+                    """;
+
+            System.out.print(breadSizeMenu + "Enter: ");
+
+            String sizeInput = scanner.nextLine();
+
+            switch (sizeInput) {
+                case "1":
+                    sandwich.setSize(Size.SMALL);
+                    running = false;
+                    break;
+                case "2":
+                    sandwich.setSize(Size.MEDIUM);
+                    running = false;
+                    break;
+                case "3":
+                    sandwich.setSize(Size.LARGE);
+                    running = false;
+                    break;
+                default:
+                    System.err.println("Wrong Bread Size! Try again.");
+            }
+        } while (running);
+    }
+
+    private void breadTypeSelection(Sandwich sandwich) {
+        boolean running = true;
+        do {
+
+            String breadTypeMenu = """
                 Select your bread:
                 1. White
                 2. Wheat
                 3. Rye
                 4. Wrap
                 """;
-        System.out.println(breadTypeMenu + enter);
-        int breadTypeInput = Integer.parseInt(scanner.nextLine());
-        Bread breadType = switch (breadTypeInput) {
-            case 1 -> Bread.WHITE;
-            case 2 -> Bread.WHEAT;
-            case 3 -> Bread.RYE;
-            case 4 -> Bread.WRAP;
-            default -> throw new IllegalArgumentException("Wrong Bread Type!");
-        };
+            System.out.println(breadTypeMenu + "Enter:");
+            String breadTypeInput =scanner.nextLine();
 
-        String breadSizeMenu = """
-                Select the bread size:
-                1. 4"
-                2. 8"
-                3. 12"
-                """;
-        System.out.print(breadSizeMenu);
-
-        int sizeInput = Integer.parseInt(scanner.nextLine());
-
-        Size breadSize = switch (sizeInput) {
-            case 1 -> Size.SMALL;
-            case 2 -> Size.MEDIUM;
-            case 3 -> Size.LARGE;
-            default -> throw new IllegalArgumentException("Wrong Bread Size!");
-        };
-
-        Sandwich sandwich = new Sandwich(breadType, breadSize);
-
-        String toppingsMenu = """
-                Below is the toppings Menu:
-                1. Meat
-                2. Cheese
-                3. Other toppings
-                4. Sauces
-                """;
-
-        System.out.println(toppingsMenu + enter);
-
-        int toppingSelection = Integer.parseInt(scanner.nextLine());
-
-        switch (toppingSelection) {
-            case 1:
-                addMeat(sandwich);
-                break;
-            case 2:
-                addCheese(sandwich);
-                break;
-            case 3:
-                addToppings(sandwich);
-                break;
-            case 4:
-                addSauce(sandwich);
-                break;
-            default:
-                throw new IllegalArgumentException("Wrong topping input!");
-        }
-
-
-
-
+            switch (breadTypeInput) {
+                case "1":
+                    sandwich.setBread(Bread.WHITE);
+                    running = false;
+                    break;
+                case "2":
+                    sandwich.setBread(Bread.WHEAT);
+                    running = false;
+                    break;
+                case "3":
+                    sandwich.setBread(Bread.RYE);
+                    running = false;
+                    break;
+                case "4":
+                    sandwich.setBread(Bread.WRAP);
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Wrong Bread Type!");
+            }
+        } while (running);
     }
 
     private void addMeat(Sandwich sandwich) {
-        String meatOptions = """
-                Here are the meat options:
-                1. Steak
-                2. Ham
-                3. Salami
-                4. Roast Beef
-                5. Chicken
-                6. Bacon
-                0. No Meat
-                """;
-        System.out.println(meatOptions + enter);
+        boolean running = true;
+        Meat meat = null;
+        do {
+            String meatOptions = """
+                    Here are the meat options:
+                    1. Steak
+                    2. Ham
+                    3. Salami
+                    4. Roast Beef
+                    5. Chicken
+                    6. Bacon
+                    0. No Meat
+                    """;
+            System.out.println(meatOptions + "\nEnter: ");
 
-        int meatInput = Integer.parseInt(scanner.nextLine());
+            int meatInput = Integer.parseInt(scanner.nextLine());
 
+            switch (meatInput) {
+                case 1:
+                    meat = Meat.STEAK;
+                    running = false;
+                    break;
+                case 2:
+                    meat = Meat.HAM;
+                    running = false;
+                    break;
+                case 3:
+                    meat = Meat.SALAMI;
+                    running = false;
+                    break;
+                case 4:
+                    meat = Meat.ROAST_BEEF;
+                    running = false;
+                    break;
+                case 5:
+                    meat = Meat.CHICKEN;
+                    running = false;
+                    break;
+                case 6:
+                    meat = Meat.BACON;
+                    running = false;
+                    break;
+                case 0:
+                    meat = Meat.NO_MEAT;
+                    running = false;
+                    break;
+                default:
+                    System.err.println("Wrong type of Meat!");
+            }
+        } while (running);
 
-        Meat meat = switch (meatInput) {
-            case 1 -> Meat.STEAK;
-            case 2 -> Meat.HAM;
-            case 3 -> Meat.SALAMI;
-            case 4 -> Meat.ROAST_BEEF;
-            case 5 -> Meat.CHICKEN;
-            case 6 -> Meat.BACON;
-            case 0 -> Meat.NO_MEAT;
-            default -> throw new IllegalArgumentException("Wrong type of Meat!");
-        };
         sandwich.setMeat(meat);
         System.out.println("Sandwich meat: " + meat.toString() + " selected.");
 
@@ -189,7 +251,7 @@ public class Ui {
             System.out.println("Would you like extra Meat? (Y/N)" + "\nEnter: ");
 
             String extraMeat = scanner.nextLine();
-            if (extraMeat.equalsIgnoreCase("Y")){
+            if (extraMeat.equalsIgnoreCase("Y")) {
                 sandwich.setExtraMeat(true);
                 System.out.println("Extra Meat added.");
             }
@@ -197,40 +259,124 @@ public class Ui {
     }
 
     private void addCheese(Sandwich sandwich) {
-        String cheeseOptions = """
-                Here are the cheese options.
-                1. American
-                2. Provolone
-                3. Cheddar
-                4. Swiss
-                0. No Cheese
-                """;
-        System.out.print(cheeseOptions + enter);
-        int cheeseInput = Integer.parseInt(scanner.nextLine());
+        Cheese cheese = null;
+        boolean running = true;
+        do {
 
-        Cheese cheese = switch (cheeseInput){
-            case 1 -> Cheese.AMERICAN;
-            case 2 -> Cheese.PROVOLONE;
-            case 3 -> Cheese.CHEDDAR;
-            case 4 -> Cheese.SWISS;
-            case 0 -> Cheese.NO_CHEESE;
-            default -> throw new IllegalArgumentException("Wrong cheese type.");
-        };
+
+            String cheeseOptions = """
+                    Here are the cheese options.
+                    1. American
+                    2. Provolone
+                    3. Cheddar
+                    4. Swiss
+                    0. No Cheese
+                    """;
+            System.out.print(cheeseOptions + "\nEnter: ");
+            int cheeseInput = Integer.parseInt(scanner.nextLine());
+
+            switch (cheeseInput) {
+                case 1:
+                    cheese = Cheese.AMERICAN;
+                    running = false;
+                    break;
+                case 2:
+                    cheese = Cheese.PROVOLONE;
+                    running = false;
+                    break;
+                case 3:
+                    cheese = Cheese.CHEDDAR;
+                    running = false;
+                    break;
+                case 4:
+                    cheese = Cheese.SWISS;
+                    running = false;
+                    break;
+                case 0:
+                    cheese = Cheese.NO_CHEESE;
+                    running = false;
+                    break;
+                default:
+                    System.err.println("Wrong cheese type.");
+            }
+        } while (running);
 
         sandwich.setCheese(cheese);
 
         if (!cheese.equals(Cheese.NO_CHEESE)) {
             System.out.println("Would you like extra cheese? (Y/N)");
             String extraCheese = scanner.nextLine();
-            if (extraCheese.equalsIgnoreCase("Y")){
+            if (extraCheese.equalsIgnoreCase("Y")) {
                 sandwich.setExtraCheese(true);
             }
         }
     }
 
     private void addToppings(Sandwich sandwich) {
-        //TODO: add toppings
+        boolean running = true;
+        do {
+            String toppingsMenu = """
+                    Here are the toppings available.
+                    1. Lettuce
+                    2. Peppers
+                    3. Onions
+                    4. Tomatoes
+                    5. Jalapenos
+                    6. Cucumbers
+                    7. Pickles
+                    8. Guacamole
+                    9. Mushrooms
+                    0. Exit""";
+            System.out.println(toppingsMenu);
 
+            int toppingsInput = Integer.parseInt(scanner.nextLine());
+
+            switch (toppingsInput) {
+                case 1:
+                    addTopping(sandwich, Topping.LETTUCE);
+                    break;
+                case 2:
+                    addTopping(sandwich, Topping.PEPPERS);
+                    break;
+                case 3:
+                    addTopping(sandwich, Topping.ONIONS);
+                    break;
+                case 4:
+                    addTopping(sandwich, Topping.TOMATOES);
+                    break;
+                case 5:
+                    addTopping(sandwich, Topping.JALAPENOS);
+                    break;
+                case 6:
+                    addTopping(sandwich, Topping.CUCUMBERS);
+                    break;
+                case 7:
+                    addTopping(sandwich, Topping.PICKLES);
+                    break;
+                case 8:
+                    addTopping(sandwich, Topping.GUACAMOLE);
+                    break;
+                case 9:
+                    addTopping(sandwich, Topping.MUSHROOMS);
+                    break;
+                case 0:
+                    running = false;
+                    break;
+                default:
+                    System.err.println("We don't have that topping type.");
+            }
+
+
+        } while (running);
+    }
+
+    private static void addTopping(Sandwich sandwich, Topping topping) {
+        if (!sandwich.getToppings().contains(topping)) {
+            sandwich.addTopping(topping);
+            System.out.println(topping.toString() + " added in sandwich.");
+        } else {
+            System.out.println("You already have " + topping.toString() +" in your sandwich.");
+        }
     }
 
     private void addSauce(Sandwich sandwich) {
@@ -239,6 +385,7 @@ public class Ui {
 
 
     private void addDrink(Order order) {
+
 
     }
 

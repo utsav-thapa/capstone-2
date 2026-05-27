@@ -1,6 +1,7 @@
 import Enums.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Sandwich {
 
@@ -8,24 +9,19 @@ public class Sandwich {
     private Bread bread;
     private Meat meat;
     private boolean extraMeat;
-    private double price;
     private Cheese cheese;
     private boolean extraCheese;
     private Sauce sauce;
 
-    private ArrayList<Topping> toppings = new ArrayList<>();
+    private HashSet<Topping> toppings = new HashSet<>();
 
-    public Sandwich(Bread bread) {
-        this.bread = bread;
-    }
-
-    public Sandwich(Bread bread, Size size){
-        this.bread = bread;
-        this.size = size;
+    public Sandwich(){
     }
 
     public void setMeat(Meat meat) {
+
         this.meat = meat;
+        System.out.println(meat.toString() + " Selected.");
     }
 
     public void setBread(Bread bread) {
@@ -33,6 +29,7 @@ public class Sandwich {
     }
 
     public void setExtraMeat(boolean extraMeat) {
+
         this.extraMeat = extraMeat;
     }
 
@@ -56,14 +53,16 @@ public class Sandwich {
 
     public void setCheese(Cheese cheese) {
         this.cheese = cheese;
+        System.out.println(cheese.toString() + " Cheese selected.");
     }
 
-    public void setToppings(ArrayList<Topping> toppings) {
+    public void setToppings(HashSet<Topping> toppings) {
         this.toppings = toppings;
     }
 
 
     public double getPrice() {
+        double price;
         switch (this.size) {
             case SMALL:
                 price = 5.50;
@@ -168,7 +167,7 @@ public class Sandwich {
         return sauce;
     }
 
-    public ArrayList<Topping> getToppings() {
+    public HashSet<Topping> getToppings() {
         return toppings;
     }
 }

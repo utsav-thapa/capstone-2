@@ -1,11 +1,12 @@
 import Enums.Topping;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Order{
     private ArrayList<Sandwich> sandwichs = new ArrayList<>();
     private ArrayList<Drink> drinks = new ArrayList<>();
-    private ArrayList<Chip> chips = new ArrayList<>();
+    private HashSet<Chip> chips = new HashSet<>();
     private String orderName;
     private double price;
 
@@ -44,7 +45,7 @@ public class Order{
         drinks.add(d1);
     }
 
-    public ArrayList<Sandwich> getSandwichs() {
+    public ArrayList<Sandwich> getSandwiches() {
         return sandwichs;
     }
 
@@ -52,7 +53,7 @@ public class Order{
         return drinks;
     }
 
-    public ArrayList<Chip> getChips() {
+    public HashSet<Chip> getChips() {
         return chips;
     }
 
@@ -135,7 +136,7 @@ public class Order{
         output.append("Order for ").append(getOrderName()).append("\n");
 
         if (sandwichs.size() > 0) {
-            for (Sandwich a : getSandwichs()) {
+            for (Sandwich a : getSandwiches()) {
                 output.append("Sandwich\n");
                 output.append("Sandwich Size: ");
                 switch(a.getSize()){
@@ -149,7 +150,7 @@ public class Order{
                         output.append("12\"\n");
                         break;
                     default:
-                        throw new RuntimeException("The system has broken.");
+                        throw new RuntimeException("Wrong size matey!");
 
 
                 }

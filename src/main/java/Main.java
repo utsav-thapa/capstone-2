@@ -9,7 +9,9 @@ public class Main {
 
 //        Order order = new Order("Utsav");
 //
-//        Sandwich s1 = new Sandwich(Size.LARGE,Bread.WHITE);
+//        Sandwich s1 = new Sandwich();
+//        s1.setSize(Size.MEDIUM);
+//        s1.setBread(Bread.WHEAT);
 //        s1.setMeat(Meat.CHICKEN);
 //        s1.setCheese(Cheese.SWISS);
 //        s1.setExtraCheese(true);
