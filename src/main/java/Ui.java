@@ -83,6 +83,7 @@ public class Ui {
         breadTypeSelection(sandwich);
 
         breadSizeSelection(sandwich);
+        Meat meat = null;
 
         boolean running = true;
         do {
@@ -103,7 +104,11 @@ public class Ui {
             switch (toppingSelection) {
                 case "1":
                     //TODO: change it so that the user can only add meat once
-                    addMeat(sandwich);
+                    if (!(meat != null)) {
+                        addMeat(sandwich, meat);
+                    } else {
+                        System.out.println("You made this choice already.");
+                    }
                     break;
                 case "2":
                     addCheese(sandwich);
@@ -132,7 +137,6 @@ public class Ui {
                     2. 8"
                     3. 12"
                     """;
-
             System.out.print(breadSizeMenu + "Enter: ");
 
             String sizeInput = scanner.nextLine();
@@ -193,9 +197,8 @@ public class Ui {
         } while (running);
     }
 
-    private void addMeat(Sandwich sandwich) {
+    private void addMeat(Sandwich sandwich,Meat meat) {
         boolean running = true;
-        Meat meat = null;
         do {
             String meatOptions = """
                         Here are the meat options:
@@ -331,44 +334,42 @@ public class Ui {
                     0. Exit""";
             System.out.println(toppingsMenu);
 
-            int toppingsInput = Integer.parseInt(scanner.nextLine());
+            String toppingsInput = scanner.nextLine();
 
             switch (toppingsInput) {
-                case 1:
+                case "1":
                     addTopping(sandwich, Topping.LETTUCE);
                     break;
-                case 2:
+                case "2":
                     addTopping(sandwich, Topping.PEPPERS);
                     break;
-                case 3:
+                case "3":
                     addTopping(sandwich, Topping.ONIONS);
                     break;
-                case 4:
+                case "4":
                     addTopping(sandwich, Topping.TOMATOES);
                     break;
-                case 5:
+                case "5":
                     addTopping(sandwich, Topping.JALAPENOS);
                     break;
-                case 6:
+                case "6":
                     addTopping(sandwich, Topping.CUCUMBERS);
                     break;
-                case 7:
+                case "7":
                     addTopping(sandwich, Topping.PICKLES);
                     break;
-                case 8:
+                case "8":
                     addTopping(sandwich, Topping.GUACAMOLE);
                     break;
-                case 9:
+                case "9":
                     addTopping(sandwich, Topping.MUSHROOMS);
                     break;
-                case 0:
+                case "0":
                     running = false;
                     break;
                 default:
                     System.err.println("We don't have that topping type.");
             }
-
-
         } while (running);
     }
 
@@ -382,6 +383,42 @@ public class Ui {
     }
 
     private void addSauce(Sandwich sandwich) {
+        String sauceMenu = """
+                Here's the sauce menu.
+                1. Mayo
+                2. Mustard
+                3. Ketchup
+                4. Ranch
+                5. Thousand Islands
+                6. Vinaigrette
+                """;
+
+        System.out.println(sauceMenu);
+
+        String sauceInput = scanner.nextLine();
+
+        switch (sauceInput){
+            case "1":
+                sandwich.setSauce(Sauce.MAYO);
+                break;
+            case "2":
+                sandwich.setSauce(Sauce.MUSTARD);
+                break;
+            case "3":
+                sandwich.setSauce(Sauce.KETCHUP);
+                break;
+            case "4":
+                sandwich.setSauce(Sauce.RANCH);
+                break;
+            case "5":
+                sandwich.setSauce(Sauce.THOUSAND_ISLANDS);
+                break;
+            case "6":
+                sandwich.setSauce(Sauce.VINAIGRETTE);
+                break;
+            default:
+                System.err.println("That is not a sauce we have.");
+        }
 
 
     }

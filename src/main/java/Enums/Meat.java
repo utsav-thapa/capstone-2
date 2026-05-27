@@ -7,5 +7,6 @@ public enum Meat {
     ROAST_BEEF,
     CHICKEN,
     BACON,
-    NO_MEAT
+    NO_MEAT,
+    NULL
 }
