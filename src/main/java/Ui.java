@@ -1,4 +1,5 @@
 import Enums.Bread;
+import Enums.Size;
 
 import java.util.Scanner;
 
@@ -36,6 +37,7 @@ public class Ui {
             }
         } while (running);
     }
+
     private void newOrder() {
         System.out.print("Please enter your name: ");
         String userName = scanner.nextLine();
@@ -69,6 +71,7 @@ public class Ui {
                     break;
                 case 4:
                     checkout(order);
+                    break;
                 case 0:
                     running = false;
                     break;
@@ -85,48 +88,42 @@ public class Ui {
                 1. White
                 2. Wheat
                 3. Rye
-                4. Wrap 
+                4. Wrap
                 Enter: """;
         System.out.println(breadTypeMenu);
         int breadTypeInput = Integer.parseInt(scanner.nextLine());
-        String breadType;
+        Bread breadType = switch (breadTypeInput) {
+            case 1 -> Bread.WHITE;
+            case 2 -> Bread.WHEAT;
+            case 3 -> Bread.RYE;
+            case 4 -> Bread.WRAP;
+            default -> throw new IllegalArgumentException("Wrong Bread Type!");
+        };
 
-        switch (breadTypeInput){
-            case 1:
-                breadType = String.valueOf(Bread.WHITE);
-                break;
-            case 2:
-                breadType = String.valueOf(Bread.WHEAT);
-                break;
-            case  3:
-                breadType = String.valueOf(Bread.RYE);
-                break;
-            case 4:
-                breadType = String.valueOf(Bread.WRAP);
-                break;
-            default:
-                throw new RuntimeException("Wrong Bread Type!");
+        String breadSizeMenu = """
+                Select the bread size:
+                1. 4"
+                2. 8"
+                3. 12"
+                Enter: """;
+        System.out.print(breadSizeMenu);
 
-        }
+        int sizeInput = Integer.parseInt(scanner.nextLine());
 
+        Size breadSize = switch (sizeInput) {
+            case 1 -> Size.SMALL;
+            case 2 -> Size.MEDIUM;
+            case 3 -> Size.LARGE;
+            default -> throw new IllegalArgumentException("Wrong Bread Size!");
+        };
 
-        String breadSize = """
-                    Select the bread size:
-                    1. 4"
-                    2. 8"
-                    3. 12"
-                    Enter: """;
-        System.out.print(breadSize);
-        int input = Integer.parseInt(scanner.nextLine());
-        switch (input) {
-            case 1:
-//                    Sandwich sandwich = new Sandwich();
-        }
-
+        Sandwich sandwich = new Sandwich(breadType, breadSize);
 
 
 
     }
+
+
 
 
     private void addDrink(Order order) {
