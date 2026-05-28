@@ -24,7 +24,7 @@ public class ReceiptsFileManager {
 
             // creates a FileWriter and BufferedWriter with the file name to save into
 
-            FileWriter fileWriter = new FileWriter("src/main/resources/Receipts"+ now + ".txt");
+            FileWriter fileWriter = new FileWriter("src/main/resources/Receipts/"+ now + ".txt");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(order.processOrder(order));

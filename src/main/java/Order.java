@@ -44,18 +44,26 @@ public class Order{
     }
 
     //processes the order and generates a formatted receipt string
+
     public String processOrder(Order order){
         double cost = 0;
         StringBuilder output = new StringBuilder();
 
-        output.append("Order for ").append(getOrderName()).append("\n");
+        output.append("\n\t\tDELI-CIOUS RECEIPT\n");
+        output.append("====================================\n");
 
-        // if there are sandwiches in order loops through the order
-        if (sandwichs.size() > 0) {
-            output.append("---------------------\n");
-            output.append("Sandwich\n");
+        output.append("\tOrder for ").append(getOrderName()).append("\n");
+
+        output.append("====================================\n");
+
+
+        // if there are sandwiches in order, loops through the order
+        if (!sandwichs.isEmpty()) {
+
+            output.append("\n\t\tSANDWICHES\n");
+
             for (Sandwich a : getSandwiches()) {
-                output.append("---------------------\n");
+                output.append("------------------------------------\n");
 
                 // displays sandwich size
                 output.append("Size: ");
@@ -96,6 +104,7 @@ public class Order{
                 output.append("Sauce: ").append(a.getSauce()).append("\n");
                 output.append("Toasted: ").append(a.getToasted()).append("\n");
                 cost += a.getPrice();
+                output.append("------------------------------------\n");
                 output.append("Sandwich Price: $").append(a.getPrice()).append("\n");
 
             }
@@ -103,8 +112,8 @@ public class Order{
         }
         // checks if chips are there and runs it if there are chips in order
         if (chips.size() > 0){
-            output.append("---------------------\n");
             output.append("Chips\n");
+            output.append("------------------------------------\n");
             double chipsCost = 0;
             for (Chips c : getChips()){
                 cost += c.getPrice();
@@ -116,8 +125,8 @@ public class Order{
 
         // runs if there are drinks in order
         if (drinks.size()>0){
-            output.append("---------------------\n");
-            output.append("Drinks\n");
+            output.append("------------------------------------\n");
+            output.append("\nDRINKS\n");
             double drinksCost = 0;
             for (Drink d :getDrinks()){
                 output.append("Size: ").append(d.getSize()).append("\n");
@@ -128,8 +137,9 @@ public class Order{
         }
 
         // displays total cost
-        output.append("---------------------\n");
-        output.append("Total Cost: $").append(cost).append("\n");
+        output.append("\n====================================\n");
+        output.append("TOTAL COST: $").append(cost).append("\n");
+        output.append("\n====================================\n");
 
         // returns the formatted receipt string
         return output.toString();
