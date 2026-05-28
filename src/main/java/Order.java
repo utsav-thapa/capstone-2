@@ -74,7 +74,7 @@ public class Order{
             output.append("Sandwich\n");
             for (Sandwich a : getSandwiches()) {
                 output.append("---------------------\n");
-                output.append("Sandwich Size: ");
+                output.append("Size: ");
                 switch(a.getSize()){
                     case SMALL:
                         output.append("4\"\n");
@@ -130,6 +130,7 @@ public class Order{
             }
             output.append("Drinks Price: $").append(drinksCost).append("\n");
         }
+        output.append("---------------------\n");
         output.append("Total Cost: $").append(cost).append("\n");
         return output.toString();
     }

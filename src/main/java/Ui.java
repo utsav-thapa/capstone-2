@@ -50,6 +50,7 @@ public class Ui {
                     2. Drinks
                     3. Chips
                     4. Checkout
+                    5. Signature Sandwich (Bonus)
                     0. Exit
                     """;
 
@@ -74,6 +75,9 @@ public class Ui {
                         System.out.println("your order is empty.");
                     }
                     break;
+                case "5":
+                    addSignatureSandwich(order);
+                    break;
                 case "0":
                     running = false;
                     break;
@@ -81,6 +85,73 @@ public class Ui {
                     System.err.println("Are you trying to break to system? Try again!");
             }
         } while (running);
+    }
+
+    private void addSignatureSandwich(Order order) {
+        Sandwich sandwich = new Sandwich();
+        String signatureMenu = """
+                Below is a list of signature sandwiches we have.
+                1. BLT
+                2. Philly Cheese Steak
+                3. Turkey & Swiss
+                4. Ham & Swiss
+                5. Veggie
+                """;
+        boolean running = true;
+        do {
+
+        System.out.println(signatureMenu + "\nEnter: ");
+        String signatureSandwichInput = scanner.nextLine();
+
+        switch (signatureSandwichInput){
+            case "1":
+                blt(sandwich);
+                running = false;
+                break;
+            case "2":
+                philly(sandwich);
+                running = false;
+                break;
+            case "3":
+                turkeySwiss(sandwich);
+                running = false;
+                break;
+            case "4":
+                hamSwiss(sandwich);
+                running = false;
+                break;
+            case "5":
+                veggie(sandwich);
+                running = false;
+                break;
+            default:
+                System.err.println("We don't have that sandwich.");
+        }
+        } while (running);
+    }
+
+    private void blt(Sandwich sandwich) {
+        sandwich.setBread(Bread.WHITE);
+        sandwich.setSize(Size.MEDIUM);
+        sandwich.setCheese(Cheese.CHEDDAR);
+        sandwich.addTopping(Topping.LETTUCE);
+        sandwich.addTopping(Topping.TOMATOES);
+        sandwich.isToasted(true);
+    }
+
+    private void philly(Sandwich sandwich) {
+
+    }
+
+    private void turkeySwiss(Sandwich sandwich) {
+    }
+
+    private void hamSwiss(Sandwich sandwich) {
+
+    }
+
+    private void veggie(Sandwich sandwich) {
+
     }
 
 
@@ -277,8 +348,7 @@ public class Ui {
         }
         Cheese cheese = null;
         boolean running = true;
-        do {
-            String cheeseOptions = """
+        String cheeseOptions = """
                     Here are the cheese options.
                     1. American
                     2. Provolone
@@ -286,27 +356,28 @@ public class Ui {
                     4. Swiss
                     0. No Cheese
                     """;
+        do {
             System.out.print(cheeseOptions + "\nEnter: ");
-            int cheeseInput = Integer.parseInt(scanner.nextLine());
+            String cheeseInput = scanner.nextLine();
 
             switch (cheeseInput) {
-                case 1:
+                case "1":
                     cheese = Cheese.AMERICAN;
                     running = false;
                     break;
-                case 2:
+                case "2":
                     cheese = Cheese.PROVOLONE;
                     running = false;
                     break;
-                case 3:
+                case "3":
                     cheese = Cheese.CHEDDAR;
                     running = false;
                     break;
-                case 4:
+                case "4":
                     cheese = Cheese.SWISS;
                     running = false;
                     break;
-                case 0:
+                case "0":
                     cheese = Cheese.NO_CHEESE;
                     running = false;
                     break;

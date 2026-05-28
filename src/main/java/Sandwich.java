@@ -11,6 +11,7 @@ public class Sandwich {
     private Cheese cheese;
     private boolean extraCheese;
     private Sauce sauce;
+    private boolean isToasted;
 
     private HashSet<Topping> toppings = new HashSet<>();
 
@@ -168,5 +169,10 @@ public class Sandwich {
 
     public HashSet<Topping> getToppings() {
         return toppings;
+    }
+
+    public void isToasted(boolean isToasted) {
+        this.isToasted = isToasted;
+
     }
 }
