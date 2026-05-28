@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class Ui {
     private static Scanner scanner = new Scanner(System.in);
 
+    // main application menu loop
     public void mainScreen() {
         boolean running = true;
         do {
+
             System.out.println("Welcome to Deli-cious Sandwich Shop");
 
             String homeScreen = """
@@ -17,9 +19,9 @@ public class Ui {
 
             System.out.println(homeScreen + "Enter:");
 
-
             String userInput = scanner.nextLine();
 
+            // handles main menu navigation
             switch (userInput) {
                 case "1":
                     newOrder();
@@ -34,8 +36,11 @@ public class Ui {
         } while (running);
     }
 
+    // manages the full order creation process
     private void newOrder() {
+
         System.out.print("Please enter your name: ");
+
         String userName = scanner.nextLine();
 
         Order order = new Order(userName);
@@ -54,6 +59,7 @@ public class Ui {
                     """;
 
             System.out.println(orderScreen + "Enter: ");
+
             String userInput = scanner.nextLine();
 
             switch (userInput) {
@@ -66,11 +72,16 @@ public class Ui {
                 case "3":
                     addChips(order);
                     break;
+
+                // checks if the order contains items before checkout
                 case "4":
                     if (!(order.getDrinks().isEmpty()) || !(order.getSandwiches().isEmpty()) || !(order.getChips().isEmpty())) {
+
                         checkout(order);
+
                         if (order.isCheckOut()) {
                             running = false;
+
                         }
                     } else {
                         System.out.println("your order is empty.");
@@ -88,8 +99,10 @@ public class Ui {
         } while (running);
     }
 
+    // displays and handles signature sandwiches selection
     private void addSignatureSandwich(Order order) {
         Sandwich sandwich = new Sandwich();
+
         String signatureMenu = """
                 Below is a list of signature sandwiches we have.
                 1. BLT
@@ -99,10 +112,12 @@ public class Ui {
                 5. Veggie
                 0. Go back
                 """;
+
         boolean running = true;
         do {
 
             System.out.println(signatureMenu + "\nEnter: ");
+
             String signatureSandwichInput = scanner.nextLine();
 
             switch (signatureSandwichInput) {
@@ -133,6 +148,7 @@ public class Ui {
                     System.err.println("We don't have that sandwich.");
             }
         } while (running);
+
         order.addSandwich(sandwich);
     }
 
@@ -193,7 +209,7 @@ public class Ui {
         sandwich.isToasted(true);
     }
 
-
+    // handles the custom sandwich building process
     private void addSandwich(Order order) {
         Sandwich sandwich = new Sandwich();
         breadTypeSelection(sandwich);
@@ -217,6 +233,7 @@ public class Ui {
 
             String toppingSelection = scanner.nextLine();
 
+            // custom sandwich selections
             switch (toppingSelection) {
                 case "1":
                     addMeat(sandwich);
@@ -244,6 +261,7 @@ public class Ui {
         order.addSandwich(sandwich);
     }
 
+    // displays and processes adding sides to sandwich
     private void addSides(Sandwich sandwich) {
         String sidesMenu = """
                 Below are the sides we have.
@@ -255,6 +273,7 @@ public class Ui {
 
         do {
             System.out.println(sidesMenu + "\nEnter: ");
+
             String sidesInput = scanner.nextLine();
 
             switch (sidesInput) {
@@ -274,22 +293,28 @@ public class Ui {
         } while (running);
     }
 
+    // prevents duplicate sides from being added
     private void addSide(Sandwich sandwich, Side side) {
         if (!sandwich.getSides().contains(side)) {
             sandwich.addSide(side);
+
             System.out.println(side.toString() + " added in sandwich.");
+
         } else {
             System.out.println("You already have " + side.toString() + " in your sandwich.");
         }
     }
 
+    // handles toasted option selection
     private static void toasted(Sandwich sandwich) {
         boolean running = true;
 
         do {
 
             if (sandwich != null) {
+
                 System.out.println("Would you like your sandwich toasted? (Y/N)");
+
                 String toastedOutput = scanner.nextLine();
 
                 switch (toastedOutput) {
@@ -310,6 +335,7 @@ public class Ui {
         } while (running);
     }
 
+    // handles bread size selection
     private void breadSizeSelection(Sandwich sandwich) {
         boolean running = true;
         do {
@@ -342,8 +368,11 @@ public class Ui {
         } while (running);
     }
 
+    // handles bread type selection
     private void breadTypeSelection(Sandwich sandwich) {
+
         boolean running = true;
+
         do {
 
             String breadTypeMenu = """
@@ -353,7 +382,9 @@ public class Ui {
                     3. Rye
                     4. Wrap
                     """;
+
             System.out.println(breadTypeMenu + "Enter:");
+
             String breadTypeInput = scanner.nextLine();
 
             switch (breadTypeInput) {
@@ -379,13 +410,19 @@ public class Ui {
         } while (running);
     }
 
+    // handles meat selection and prevents duplicate meat selection
     private void addMeat(Sandwich sandwich) {
+
         if (sandwich.getMeat() != null && !sandwich.getMeat().equals(Meat.NO_MEAT)) {
+
             System.err.println("You have already selected meat: " + sandwich.getMeat());
+
             return;
         }
+
         boolean running = true;
         Meat meat = null;
+
         do {
             String meatOptions = """
                     Here are the meat options:
@@ -436,27 +473,37 @@ public class Ui {
         } while (running);
 
         sandwich.setMeat(meat);
+
         System.out.println("Sandwich meat: " + meat.toString() + " selected.");
 
+        // handles extra meat option
         if (!meat.equals(Meat.NO_MEAT)) {
+
             System.out.println("Would you like extra Meat? (Y/N)" + "\nEnter: ");
 
             String extraMeat = scanner.nextLine();
+
             if (extraMeat.equalsIgnoreCase("Y")) {
+
                 sandwich.setExtraMeat(true);
+
                 System.out.println("Extra Meat added.");
             }
         }
 
     }
 
+    // handles cheese selection and prevents duplicate cheese selection
     private void addCheese(Sandwich sandwich) {
         if (sandwich.getCheese() != null && !sandwich.getCheese().equals(Cheese.NO_CHEESE)) {
+
             System.err.println("You have already selected cheese: " + sandwich.getCheese());
+
             return;
         }
         Cheese cheese = null;
         boolean running = true;
+
         String cheeseOptions = """
                 Here are the cheese options.
                 1. American
@@ -467,6 +514,7 @@ public class Ui {
                 """;
         do {
             System.out.print(cheeseOptions + "\nEnter: ");
+
             String cheeseInput = scanner.nextLine();
 
             switch (cheeseInput) {
@@ -496,18 +544,24 @@ public class Ui {
         } while (running);
 
         sandwich.setCheese(cheese);
+
         System.out.println(cheese.toString() + " Cheese selected.");
 
         if (!cheese.equals(Cheese.NO_CHEESE)) {
+
             System.out.println("Would you like extra cheese? (Y/N)");
+
             String extraCheese = scanner.nextLine();
+
             if (extraCheese.equalsIgnoreCase("Y")) {
+
                 sandwich.setExtraCheese(true);
                 System.out.println("Extra cheese added.");
             }
         }
     }
 
+    // handles topping selection menu
     private void addToppings(Sandwich sandwich) {
         boolean running = true;
         do {
@@ -525,6 +579,7 @@ public class Ui {
                     0. Head Back""";
             System.out.println(toppingsMenu + "\nEnter: ");
 
+            // handles topping selection
             String toppingsInput = scanner.nextLine();
 
             switch (toppingsInput) {
@@ -564,15 +619,19 @@ public class Ui {
         } while (running);
     }
 
+    // adds topping and prevents duplicate toppings from being added
     private static void addRegularTopping(Sandwich sandwich, Topping topping) {
         if (!sandwich.getToppings().contains(topping)) {
+
             sandwich.addTopping(topping);
+
             System.out.println(topping.toString() + " added in sandwich.");
         } else {
+
             System.out.println("You already have " + topping.toString() + " in your sandwich.");
         }
     }
-
+    // handles sauce selection
     private void addSauce(Sandwich sandwich) {
         String sauceMenu = """
                 Here's the sauce menu.
@@ -625,7 +684,7 @@ public class Ui {
         } while (running);
     }
 
-
+    // handles drink size selection and adds drink to order
     private void addDrink(Order order) {
 
         String sizeMenu = """
@@ -643,7 +702,6 @@ public class Ui {
             System.out.println(sizeMenu + "\nEnter: ");
 
             String sizeInput = scanner.nextLine();
-
 
             switch (sizeInput) {
                 case "1":
@@ -665,19 +723,24 @@ public class Ui {
 
         Drink drink = new Drink(size);
         order.addDrink(drink);
-        System.out.println(size.toString() + " drink added to order.");
 
+        System.out.println(size.toString() + " drink added to order.");
     }
 
+    // adds chips to the order
     private void addChips(Order order) {
+
         Chips chips = new Chips();
         order.addChip(chips);
         System.out.println("Chips added to order");
     }
 
+    // handles final checkout and receipt confirmation
     private void checkout(Order order) {
+
         System.out.println("Here's your receipt.");
         System.out.println(order.processOrder(order));
+
         String orderConfirmation = """
                 Do you confirm your order?
                 1. Confirm
@@ -689,12 +752,15 @@ public class Ui {
             System.out.println(orderConfirmation + "\nEnter: ");
             String confirmationOutput = scanner.nextLine();
 
+            // handles final order confirmation
             switch (confirmationOutput) {
                 case "1":
+
                     ReceiptsFileManager manager = new ReceiptsFileManager();
                     manager.saveReceipt(order);
 
-                    System.out.println("Thank you for placing your order.");
+                    System.out.println("Thank you for placing your order, " + order.getOrderName() + "!");
+
                     order.setCheckOut(true);
                     running = false;
                     break;

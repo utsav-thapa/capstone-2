@@ -55,9 +55,11 @@ public class Sandwich {
     }
 
 
-
+// calculates and returns the total sandwich price
     public double getPrice() {
         double price;
+
+        // base price based on sandwich size
         switch (this.size) {
             case SMALL:
                 price = 5.50;
@@ -71,6 +73,7 @@ public class Sandwich {
             default:
                 throw new RuntimeException("Illegal size");
         }
+        // adds meat if meat is selected
         if (this.meat != null) {
             if (!this.meat.equals(Meat.NO_MEAT)) {
                 switch (this.size) {
@@ -88,6 +91,7 @@ public class Sandwich {
                 }
             }
 
+            // adds extra meat charge
             if(this.extraMeat) {
                 switch (this.size) {
                     case SMALL:
@@ -103,6 +107,8 @@ public class Sandwich {
                         throw new RuntimeException("Illegal size");
                 }
             }
+
+            // adds cheese price if cheese is selected
             if (this.cheese != null) {
                 if (!this.cheese.equals(Cheese.NO_CHEESE)) {
                     switch (this.size) {

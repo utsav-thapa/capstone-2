@@ -6,6 +6,7 @@ public class Drink {
         this.size = size;
     }
 
+    // calculates drinks price based on the size
     public double getPrice() {
         double price = 0;
         switch (this.size) {

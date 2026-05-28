@@ -43,18 +43,23 @@ public class Order{
         return orderName;
     }
 
+    //processes the order and generates a formatted receipt string
     public String processOrder(Order order){
         double cost = 0;
         StringBuilder output = new StringBuilder();
 
         output.append("Order for ").append(getOrderName()).append("\n");
 
+        // if there are sandwiches in order loops through the order
         if (sandwichs.size() > 0) {
             output.append("---------------------\n");
             output.append("Sandwich\n");
             for (Sandwich a : getSandwiches()) {
                 output.append("---------------------\n");
+
+                // displays sandwich size
                 output.append("Size: ");
+
                 switch(a.getSize()){
                     case SMALL:
                         output.append("4\"\n");
@@ -70,15 +75,24 @@ public class Order{
 
 
                 }
+                // displays bread type
                 output.append("Bread type: ").append(a.getBread()).append("\n");
+
+                // displays meat and extra meat option
                 output.append("Meat: ").append(a.getMeat());
                 output.append(" | Extra Meat: ").append(a.isExtraMeat()).append("\n");
+
+                // displays cheese and extra cheese option
                 output.append("Cheese: ").append(a.getCheese());
                 output.append(" | Extra Cheese: ").append(a.isExtraCheese()).append("\n");
+
+                //displays toppings
                 output.append("Toppings\n");
                 for (Topping t: a.getToppings()){
                     output.append(t).append("\n");
                 }
+
+                // displays sauce
                 output.append("Sauce: ").append(a.getSauce()).append("\n");
                 output.append("Toasted: ").append(a.getToasted()).append("\n");
                 cost += a.getPrice();
@@ -87,6 +101,7 @@ public class Order{
             }
 
         }
+        // checks if chips are there and runs it if there are chips in order
         if (chips.size() > 0){
             output.append("---------------------\n");
             output.append("Chips\n");
@@ -99,6 +114,7 @@ public class Order{
 
         }
 
+        // runs if there are drinks in order
         if (drinks.size()>0){
             output.append("---------------------\n");
             output.append("Drinks\n");
@@ -110,8 +126,12 @@ public class Order{
             }
             output.append("Drinks Price: $").append(drinksCost).append("\n");
         }
+
+        // displays total cost
         output.append("---------------------\n");
         output.append("Total Cost: $").append(cost).append("\n");
+
+        // returns the formatted receipt string
         return output.toString();
     }
 
