@@ -16,7 +16,7 @@ public class Ui {
                     0. Exit
                     """;
 
-            System.out.println(homeScreen + "Enter:" );
+            System.out.println(homeScreen + "Enter:");
 
 
             String userInput = scanner.nextLine();
@@ -70,7 +70,9 @@ public class Ui {
                 case "4":
                     if (!(order.getDrinks().isEmpty()) || !(order.getSandwiches().isEmpty()) || !(order.getChips().isEmpty())) {
                         checkout(order);
-                        running = false;
+                        if (order.isCheckOut()) {
+                            running = false;
+                        }
                     } else {
                         System.out.println("your order is empty.");
                     }
@@ -100,33 +102,33 @@ public class Ui {
         boolean running = true;
         do {
 
-        System.out.println(signatureMenu + "\nEnter: ");
-        String signatureSandwichInput = scanner.nextLine();
+            System.out.println(signatureMenu + "\nEnter: ");
+            String signatureSandwichInput = scanner.nextLine();
 
-        switch (signatureSandwichInput){
-            case "1":
-                blt(sandwich);
-                running = false;
-                break;
-            case "2":
-                philly(sandwich);
-                running = false;
-                break;
-            case "3":
-                grilledChicken(sandwich);
-                running = false;
-                break;
-            case "4":
-                hamSwiss(sandwich);
-                running = false;
-                break;
-            case "5":
-                veggie(sandwich);
-                running = false;
-                break;
-            default:
-                System.err.println("We don't have that sandwich.");
-        }
+            switch (signatureSandwichInput) {
+                case "1":
+                    blt(sandwich);
+                    running = false;
+                    break;
+                case "2":
+                    philly(sandwich);
+                    running = false;
+                    break;
+                case "3":
+                    grilledChicken(sandwich);
+                    running = false;
+                    break;
+                case "4":
+                    hamSwiss(sandwich);
+                    running = false;
+                    break;
+                case "5":
+                    veggie(sandwich);
+                    running = false;
+                    break;
+                default:
+                    System.err.println("We don't have that sandwich.");
+            }
         } while (running);
         order.addSandwich(sandwich);
     }
@@ -142,7 +144,6 @@ public class Ui {
     }
 
     private void philly(Sandwich sandwich) {
-// TODO
         sandwich.setBread(Bread.WHITE);
         sandwich.setSize(Size.MEDIUM);
         sandwich.setMeat(Meat.STEAK);
@@ -195,19 +196,18 @@ public class Ui {
         breadTypeSelection(sandwich);
 
         breadSizeSelection(sandwich);
-        Meat meat = null;
 
         boolean running = true;
         String toppingsMenu = """
-                    What would you like to add to your sandwich?
-                    
-                    1. Meat
-                    2. Cheese
-                    3. Other toppings
-                    4. Select Sauces
-                    5. Sides
-                    0. Exit
-                    """;
+                What would you like to add to your sandwich?
+                
+                1. Meat
+                2. Cheese
+                3. Other toppings
+                4. Select Sauces
+                5. Sides
+                0. Exit
+                """;
         do {
 
             System.out.println(toppingsMenu + "Enter: ");
@@ -251,23 +251,23 @@ public class Ui {
         boolean running = true;
 
         do {
-        System.out.println(sidesMenu + "\nEnter: ");
-        String sidesInput = scanner.nextLine();
+            System.out.println(sidesMenu + "\nEnter: ");
+            String sidesInput = scanner.nextLine();
 
-        switch (sidesInput){
-            case "1":
-                addSide(sandwich,Side.AU_JUS);
-               sandwich.addSide(Side.AU_JUS);
-                break;
-            case "2":
-                sandwich.addSide(Side.SAUCE);
-                break;
-            case "3":
-                running = false;
-                break;
-            default:
-                System.out.println("We don't have that side.");
-        }
+            switch (sidesInput) {
+                case "1":
+                    addSide(sandwich, Side.AU_JUS);
+                    break;
+                case "2":
+                    addSide(sandwich, Side.SAUCE);
+
+                    break;
+                case "3":
+                    running = false;
+                    break;
+                default:
+                    System.out.println("We don't have that side.");
+            }
 
         } while (running);
     }
@@ -277,7 +277,7 @@ public class Ui {
             sandwich.addSide(side);
             System.out.println(side.toString() + " added in sandwich.");
         } else {
-            System.out.println("You already have " + side.toString() +" in your sandwich.");
+            System.out.println("You already have " + side.toString() + " in your sandwich.");
         }
     }
 
@@ -286,25 +286,25 @@ public class Ui {
 
         do {
 
-        if (sandwich != null) {
-            System.out.println("Would you like your sandwich toasted? (Y/N)");
-            String toastedOutput = scanner.nextLine();
+            if (sandwich != null) {
+                System.out.println("Would you like your sandwich toasted? (Y/N)");
+                String toastedOutput = scanner.nextLine();
 
-            switch (toastedOutput) {
-                case "y","Y":
-                    sandwich.isToasted(true);
-                    System.out.println("Sandwich will be toasted.");
-                    running = false;
-                    break;
-                case "n","N":
-                    sandwich.isToasted(false);
-                    System.out.println("Sandwich will not be toasted.");
-                    running = false;
-                    break;
-                default:
-                    System.err.println("Do you want it toasted or not?");
+                switch (toastedOutput) {
+                    case "y", "Y":
+                        sandwich.isToasted(true);
+                        System.out.println("Sandwich will be toasted.");
+                        running = false;
+                        break;
+                    case "n", "N":
+                        sandwich.isToasted(false);
+                        System.out.println("Sandwich will not be toasted.");
+                        running = false;
+                        break;
+                    default:
+                        System.err.println("Do you want it toasted or not?");
+                }
             }
-        }
         } while (running);
     }
 
@@ -345,14 +345,14 @@ public class Ui {
         do {
 
             String breadTypeMenu = """
-                Select your bread:
-                1. White
-                2. Wheat
-                3. Rye
-                4. Wrap
-                """;
+                    Select your bread:
+                    1. White
+                    2. Wheat
+                    3. Rye
+                    4. Wrap
+                    """;
             System.out.println(breadTypeMenu + "Enter:");
-            String breadTypeInput =scanner.nextLine();
+            String breadTypeInput = scanner.nextLine();
 
             switch (breadTypeInput) {
                 case "1":
@@ -386,15 +386,15 @@ public class Ui {
         Meat meat = null;
         do {
             String meatOptions = """
-                        Here are the meat options:
-                        1. Steak
-                        2. Ham
-                        3. Salami
-                        4. Roast Beef
-                        5. Chicken
-                        6. Bacon
-                        0. No Meat
-                        """;
+                    Here are the meat options:
+                    1. Steak
+                    2. Ham
+                    3. Salami
+                    4. Roast Beef
+                    5. Chicken
+                    6. Bacon
+                    0. No Meat
+                    """;
             System.out.println(meatOptions + "Enter: ");
 
             String meatInput = scanner.nextLine();
@@ -431,7 +431,7 @@ public class Ui {
                 default:
                     System.err.println("Wrong type of Meat!");
             }
-        } while (running) ;
+        } while (running);
 
         sandwich.setMeat(meat);
         System.out.println("Sandwich meat: " + meat.toString() + " selected.");
@@ -449,20 +449,20 @@ public class Ui {
     }
 
     private void addCheese(Sandwich sandwich) {
-        if (sandwich.getCheese() != null && !sandwich.getCheese().equals(Cheese.NO_CHEESE)){
+        if (sandwich.getCheese() != null && !sandwich.getCheese().equals(Cheese.NO_CHEESE)) {
             System.err.println("You have already selected cheese: " + sandwich.getCheese());
             return;
         }
         Cheese cheese = null;
         boolean running = true;
         String cheeseOptions = """
-                    Here are the cheese options.
-                    1. American
-                    2. Provolone
-                    3. Cheddar
-                    4. Swiss
-                    0. No Cheese
-                    """;
+                Here are the cheese options.
+                1. American
+                2. Provolone
+                3. Cheddar
+                4. Swiss
+                0. No Cheese
+                """;
         do {
             System.out.print(cheeseOptions + "\nEnter: ");
             String cheeseInput = scanner.nextLine();
@@ -567,7 +567,7 @@ public class Ui {
             sandwich.addTopping(topping);
             System.out.println(topping.toString() + " added in sandwich.");
         } else {
-            System.out.println("You already have " + topping.toString() +" in your sandwich.");
+            System.out.println("You already have " + topping.toString() + " in your sandwich.");
         }
     }
 
@@ -697,7 +697,7 @@ public class Ui {
             String sizeInput = scanner.nextLine();
 
 
-            switch (sizeInput){
+            switch (sizeInput) {
                 case "1":
                     size = Size.SMALL;
                     running1 = false;
@@ -715,7 +715,7 @@ public class Ui {
             }
         } while (running1);
 
-        Drink drink = new Drink(size,drinkFlavor);
+        Drink drink = new Drink(size, drinkFlavor);
         order.addDrink(drink);
         System.out.println(size.toString() + " " + drinkFlavor.toString() + " added to order.");
 
@@ -733,7 +733,7 @@ public class Ui {
         String orderConfirmation = """
                 Do you confirm your order?
                 1. Confirm
-                2. Cancel
+                2. Go back
                 """;
         boolean running = true;
         do {
@@ -741,16 +741,18 @@ public class Ui {
             System.out.println(orderConfirmation + "\nEnter: ");
             String confirmationOutput = scanner.nextLine();
 
-            switch (confirmationOutput){
+            switch (confirmationOutput) {
                 case "1":
                     ReceiptsFileManager manager = new ReceiptsFileManager();
                     manager.saveReceipt(order);
+
                     System.out.println("Thank you for placing your order.");
+                    order.setCheckOut(true);
                     running = false;
                     break;
                 case "2":
+                    order.setCheckOut(false);
                     running = false;
-                    System.out.println("You have cancelled your order.");
                     break;
                 default:
                     System.err.println("We are the confirmation page. Don't play any games!");

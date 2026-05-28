@@ -8,6 +8,7 @@ public class Order{
     private ArrayList<Chips> chips = new ArrayList<>();
     private String orderName;
     private double price;
+    private boolean checkOut;
 
 
 
@@ -134,5 +135,13 @@ public class Order{
         output.append("---------------------\n");
         output.append("Total Cost: $").append(cost).append("\n");
         return output.toString();
+    }
+
+    public boolean isCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(boolean checkOut) {
+        this.checkOut = checkOut;
     }
 }
