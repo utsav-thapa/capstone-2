@@ -104,11 +104,7 @@ public class Ui {
             switch (toppingSelection) {
                 case "1":
                     //TODO: change it so that the user can only add meat once
-                    if (!(meat != null)) {
-                        addMeat(sandwich, meat);
-                    } else {
-                        System.out.println("You made this choice already.");
-                    }
+                   addMeat(sandwich);
                     break;
                 case "2":
                     addCheese(sandwich);
@@ -197,8 +193,13 @@ public class Ui {
         } while (running);
     }
 
-    private void addMeat(Sandwich sandwich,Meat meat) {
+    private void addMeat(Sandwich sandwich) {
+        if (sandwich.getMeat() != null && !sandwich.getMeat().equals(Meat.NO_MEAT)) {
+            System.err.println("You have already selected meat: " + sandwich.getMeat());
+            return;
+        }
         boolean running = true;
+        Meat meat = null;
         do {
             String meatOptions = """
                         Here are the meat options:
@@ -264,6 +265,10 @@ public class Ui {
     }
 
     private void addCheese(Sandwich sandwich) {
+        if (sandwich.getCheese() != null && !sandwich.getCheese().equals(Cheese.NO_CHEESE)){
+            System.err.println("You have already selected cheese: " + sandwich.getCheese());
+            return;
+        }
         Cheese cheese = null;
         boolean running = true;
         do {
@@ -338,31 +343,31 @@ public class Ui {
 
             switch (toppingsInput) {
                 case "1":
-                    addTopping(sandwich, Topping.LETTUCE);
+                    addRegularTopping(sandwich, Topping.LETTUCE);
                     break;
                 case "2":
-                    addTopping(sandwich, Topping.PEPPERS);
+                    addRegularTopping(sandwich, Topping.PEPPERS);
                     break;
                 case "3":
-                    addTopping(sandwich, Topping.ONIONS);
+                    addRegularTopping(sandwich, Topping.ONIONS);
                     break;
                 case "4":
-                    addTopping(sandwich, Topping.TOMATOES);
+                    addRegularTopping(sandwich, Topping.TOMATOES);
                     break;
                 case "5":
-                    addTopping(sandwich, Topping.JALAPENOS);
+                    addRegularTopping(sandwich, Topping.JALAPENOS);
                     break;
                 case "6":
-                    addTopping(sandwich, Topping.CUCUMBERS);
+                    addRegularTopping(sandwich, Topping.CUCUMBERS);
                     break;
                 case "7":
-                    addTopping(sandwich, Topping.PICKLES);
+                    addRegularTopping(sandwich, Topping.PICKLES);
                     break;
                 case "8":
-                    addTopping(sandwich, Topping.GUACAMOLE);
+                    addRegularTopping(sandwich, Topping.GUACAMOLE);
                     break;
                 case "9":
-                    addTopping(sandwich, Topping.MUSHROOMS);
+                    addRegularTopping(sandwich, Topping.MUSHROOMS);
                     break;
                 case "0":
                     running = false;
@@ -373,7 +378,7 @@ public class Ui {
         } while (running);
     }
 
-    private static void addTopping(Sandwich sandwich, Topping topping) {
+    private static void addRegularTopping(Sandwich sandwich, Topping topping) {
         if (!sandwich.getToppings().contains(topping)) {
             sandwich.addTopping(topping);
             System.out.println(topping.toString() + " added in sandwich.");
@@ -419,13 +424,37 @@ public class Ui {
             default:
                 System.err.println("That is not a sauce we have.");
         }
-
-
     }
 
-
     private void addDrink(Order order) {
+        String drinksMenu = """
+                Below is a list of drinks we have:
+                1. Coke
+                2. Diet Coke
+                3. Sprite
+                4. Pepsi
+                5. Diet Pepsi
+                6. Lemonade
+                7. Ginger Ale
+                8. Juice""";
+        System.out.println(drinksMenu + "\nEnter: ");
 
+        String drinkInput = scanner.nextLine();
+
+        String sizeMenu = """
+                What size of drink would you like?
+                1. Small
+                2. Medium
+                3. Large
+                """;
+        System.out.println(sizeMenu + "\nEnter: ");
+
+
+        switch (drinkInput){
+            case "1":
+
+
+        }
 
     }
 

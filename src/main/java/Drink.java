@@ -2,9 +2,12 @@ import Enums.Size;
 
 public class Drink {
     Size size;
+    Enums.Drink drink;
 
-    public Drink(Size size) {
+    public Drink(Size size, Enums.Drink drink) {
+
         this.size = size;
+        this.drink = drink;
     }
 
 
@@ -30,4 +33,10 @@ public class Drink {
     public Size getSize() {
         return size;
     }
+
+    public Enums.Drink getDrink() {
+        return drink;
+    }
 }
+
+

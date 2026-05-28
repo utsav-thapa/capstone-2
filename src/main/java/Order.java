@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class Order{
     private ArrayList<Sandwich> sandwichs = new ArrayList<>();
     private ArrayList<Drink> drinks = new ArrayList<>();
-    private HashSet<Chip> chips = new HashSet<>();
+    private ArrayList<Chip> chips = new ArrayList<>();
     private String orderName;
     private double price;
 
@@ -29,7 +29,6 @@ public class Order{
         for (Chip c : chips) {
             price += c.getPrice();
         }
-
         return price;
     }
 
@@ -53,7 +52,7 @@ public class Order{
         return drinks;
     }
 
-    public HashSet<Chip> getChips() {
+    public ArrayList<Chip> getChips() {
         return chips;
     }
 
@@ -188,6 +187,7 @@ public class Order{
                 output.append("Drink: ").append(d.getSize()).append("\n");
                 cost += d.getPrice();
                 drinksCost += d.getPrice();
+
             }
             output.append("Drinks Price: $").append(drinksCost).append("\n");
         }
