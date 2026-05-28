@@ -67,7 +67,7 @@ public class Ui {
                     addChips(order);
                     break;
                 case "4":
-                    if (order != null) {
+                    if (!(order.getDrinks().isEmpty()) || !(order.getSandwiches().isEmpty()) || !(order.getChips().isEmpty())) {
                         checkout(order);
                         running = false;
                     } else {
