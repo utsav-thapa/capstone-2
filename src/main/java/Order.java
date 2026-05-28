@@ -125,7 +125,6 @@ public class Order{
             output.append("Drinks\n");
             double drinksCost = 0;
             for (Drink d :getDrinks()){
-                output.append("Drink: ").append(d.getDrink()).append("\n");
                 output.append("Size: ").append(d.getSize()).append("\n");
                 cost += d.getPrice();
                 drinksCost += d.getPrice();

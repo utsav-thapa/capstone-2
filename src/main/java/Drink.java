@@ -1,14 +1,11 @@
-import Enums.DrinkFlavor;
 import Enums.Size;
 
 public class Drink {
     Size size;
-    DrinkFlavor drinkFlavor;
 
-    public Drink(Size size, DrinkFlavor drinkFlavor) {
+    public Drink(Size size) {
 
         this.size = size;
-        this.drinkFlavor = drinkFlavor;
     }
 
 
@@ -24,8 +21,8 @@ public class Drink {
             case LARGE:
                 price = 3.00;
                 break;
-//            default:
-//                throw new RuntimeException("Illegal size");
+            default:
+                throw new RuntimeException("Illegal size");
         }
 
         return price;
@@ -35,9 +32,6 @@ public class Drink {
         return size;
     }
 
-    public DrinkFlavor getDrink() {
-        return drinkFlavor;
-    }
 }
 
 

@@ -1,5 +1,4 @@
 import Enums.*;
-import Enums.DrinkFlavor;
 
 import java.util.Scanner;
 
@@ -621,67 +620,11 @@ public class Ui {
 
 
     private void addDrink(Order order) {
-        String drinksMenu = """
-                Below is a list of drinks we have:
-                1. Coke
-                2. Diet Coke
-                3. Sprite
-                4. Pepsi
-                5. Diet Pepsi
-                6. Lemonade
-                7. Ginger Ale
-                8. Juice""";
 
-        DrinkFlavor drinkFlavor = null;
-        boolean running = true;
-
-        do {
-            System.out.println(drinksMenu + "\nEnter: ");
-
-            String drinkInput = scanner.nextLine();
-
-
-            switch (drinkInput) {
-                case "1":
-                    drinkFlavor = DrinkFlavor.COKE;
-                    running = false;
-                    break;
-                case "2":
-                    drinkFlavor = DrinkFlavor.DIET_COKE;
-                    running = false;
-                    break;
-                case "3":
-                    drinkFlavor = DrinkFlavor.SPRITE;
-                    running = false;
-                    break;
-                case "4":
-                    drinkFlavor = DrinkFlavor.PEPSI;
-                    running = false;
-                    break;
-                case "5":
-                    drinkFlavor = DrinkFlavor.DIET_PEPSI;
-                    running = false;
-                    break;
-                case "6":
-                    drinkFlavor = DrinkFlavor.LEMONADE;
-                    running = false;
-                    break;
-                case "7":
-                    drinkFlavor = DrinkFlavor.GINGER_ALE;
-                    running = false;
-                    break;
-                case "8":
-                    drinkFlavor = DrinkFlavor.JUICE;
-                    running = false;
-                    break;
-                default:
-                    System.err.println("That's not a drink!");
-            }
-        } while (running);
 
 
         String sizeMenu = """
-                What size of drinkFlavor would you like?
+                What size of drink would you like?
                 1. Small
                 2. Medium
                 3. Large
@@ -715,9 +658,9 @@ public class Ui {
             }
         } while (running1);
 
-        Drink drink = new Drink(size, drinkFlavor);
+        Drink drink = new Drink(size);
         order.addDrink(drink);
-        System.out.println(size.toString() + " " + drinkFlavor.toString() + " added to order.");
+        System.out.println(size.toString() + " drink added to order.");
 
     }
 
