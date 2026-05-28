@@ -140,17 +140,23 @@ public class Ui {
     }
 
     private void philly(Sandwich sandwich) {
-
+// TODO
     }
 
     private void turkeySwiss(Sandwich sandwich) {
+// TODO
+
     }
 
     private void hamSwiss(Sandwich sandwich) {
+// TODO
+
 
     }
 
     private void veggie(Sandwich sandwich) {
+// TODO
+
 
     }
 
@@ -163,8 +169,7 @@ public class Ui {
         Meat meat = null;
 
         boolean running = true;
-        do {
-            String toppingsMenu = """
+        String toppingsMenu = """
                     What would you like to add to your sandwich?
                     
                     1. Meat
@@ -173,6 +178,7 @@ public class Ui {
                     4. Select Sauces
                     0. Exit
                     """;
+        do {
 
             System.out.println(toppingsMenu + "Enter: ");
 
@@ -192,6 +198,7 @@ public class Ui {
                     addSauce(sandwich);
                     break;
                 case "0":
+                    toasted(sandwich);
                     running = false;
                     break;
                 default:
@@ -199,6 +206,33 @@ public class Ui {
             }
         } while (running);
         order.addSandwich(sandwich);
+    }
+
+    private static void toasted(Sandwich sandwich) {
+        boolean running = true;
+
+        do {
+
+        if (sandwich != null) {
+            System.out.println("Would you like your sandwich toasted? (Y/N)");
+            String toastedOutput = scanner.nextLine();
+
+            switch (toastedOutput) {
+                case "y","Y":
+                    sandwich.isToasted(true);
+                    System.out.println("Sandwich will be toasted.");
+                    running = false;
+                    break;
+                case "n","N":
+                    sandwich.isToasted(false);
+                    System.out.println("Sandwich will not be toasted.");
+                    running = false;
+                    break;
+                default:
+                    System.err.println("Do you want it toasted or not?");
+            }
+        }
+        } while (running);
     }
 
     private void breadSizeSelection(Sandwich sandwich) {
