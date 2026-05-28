@@ -1,6 +1,5 @@
 import Enums.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Sandwich {
@@ -56,9 +55,9 @@ public class Sandwich {
         System.out.println(cheese.toString() + " Cheese selected.");
     }
 
-    public void setToppings(HashSet<Topping> toppings) {
-        this.toppings = toppings;
-    }
+//    public void setToppings(HashSet<Topping> toppings) {
+//        this.toppings = toppings;
+//    }
 
 
     public double getPrice() {
