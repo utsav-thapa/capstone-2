@@ -42,15 +42,15 @@ public class Ui {
         boolean running = true;
 
         do {
+            System.out.println("What would you like to add to your order, " + order.getOrderName() + "?");
 
             String orderScreen = """
-                    What would you like to order?
                     1. Sandwich
                     2. Drinks
                     3. Chips
                     4. Checkout
                     5. Signature Sandwich (Bonus)
-                    0. Exit
+                    0. Cancel Order
                     """;
 
             System.out.println(orderScreen + "Enter: ");
@@ -97,6 +97,7 @@ public class Ui {
                 3. Grilled Chicken
                 4. Ham & Swiss
                 5. Veggie
+                0. Go back
                 """;
         boolean running = true;
         do {
@@ -123,6 +124,9 @@ public class Ui {
                     break;
                 case "5":
                     veggie(sandwich);
+                    running = false;
+                    break;
+                case "0":
                     running = false;
                     break;
                 default:
@@ -205,7 +209,7 @@ public class Ui {
                 3. Other toppings
                 4. Select Sauces
                 5. Sides
-                0. Exit
+                0. Back
                 """;
         do {
 
@@ -245,7 +249,7 @@ public class Ui {
                 Below are the sides we have.
                 1. Au Jus
                 2. Sauce
-                0. Exit""";
+                0. Head Back""";
 
         boolean running = true;
 
@@ -259,13 +263,12 @@ public class Ui {
                     break;
                 case "2":
                     addSide(sandwich, Side.SAUCE);
-
                     break;
-                case "3":
+                case "0":
                     running = false;
                     break;
                 default:
-                    System.out.println("We don't have that side.");
+                    System.err.println("We don't have that side.");
             }
 
         } while (running);
@@ -519,8 +522,8 @@ public class Ui {
                     7. Pickles
                     8. Guacamole
                     9. Mushrooms
-                    0. Exit""";
-            System.out.println(toppingsMenu);
+                    0. Head Back""";
+            System.out.println(toppingsMenu + "\nEnter: ");
 
             String toppingsInput = scanner.nextLine();
 
@@ -579,6 +582,7 @@ public class Ui {
                 4. Ranch
                 5. Thousand Islands
                 6. Vinaigrette
+                0. No sauce
                 """;
         boolean running = true;
         do {
@@ -610,6 +614,9 @@ public class Ui {
                     break;
                 case "6":
                     sandwich.setSauce(Sauce.VINAIGRETTE);
+                    running = false;
+                    break;
+                case "0":
                     running = false;
                     break;
                 default:

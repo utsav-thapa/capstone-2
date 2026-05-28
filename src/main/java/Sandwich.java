@@ -71,22 +71,22 @@ public class Sandwich {
             default:
                 throw new RuntimeException("Illegal size");
         }
-
-        if (!this.meat.equals(Meat.NO_MEAT)){
-            switch(this.size) {
-                case SMALL:
-                    price += 1.00;
-                    break;
-                case MEDIUM:
-                    price += 2.00;
-                    break;
-                case LARGE:
-                    price += 3.00;
-                    break;
-                default:
-                    throw new RuntimeException("You don't want any meat then?");
+        if (this.meat != null) {
+            if (!this.meat.equals(Meat.NO_MEAT)) {
+                switch (this.size) {
+                    case SMALL:
+                        price += 1.00;
+                        break;
+                    case MEDIUM:
+                        price += 2.00;
+                        break;
+                    case LARGE:
+                        price += 3.00;
+                        break;
+                    default:
+                        throw new RuntimeException("You don't want any meat then?");
+                }
             }
-
 
             if(this.extraMeat) {
                 switch (this.size) {
@@ -103,19 +103,21 @@ public class Sandwich {
                         throw new RuntimeException("Illegal size");
                 }
             }
-            if (!this.cheese.equals(Cheese.NO_CHEESE)){
-                switch (this.size){
-                    case SMALL:
-                        price += .75;
-                        break;
-                    case MEDIUM:
-                        price += 1.50;
-                        break;
-                    case LARGE:
-                        price += 2.25;
-                        break;
-                    default:
-                        throw new RuntimeException("Do you want cheese or not?");
+            if (this.cheese != null) {
+                if (!this.cheese.equals(Cheese.NO_CHEESE)) {
+                    switch (this.size) {
+                        case SMALL:
+                            price += .75;
+                            break;
+                        case MEDIUM:
+                            price += 1.50;
+                            break;
+                        case LARGE:
+                            price += 2.25;
+                            break;
+                        default:
+                            throw new RuntimeException("Do you want cheese or not?");
+                    }
                 }
             }
             if (this.extraCheese){
