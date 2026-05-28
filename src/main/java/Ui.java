@@ -109,8 +109,7 @@ public class Ui {
 
             switch (toppingSelection) {
                 case "1":
-                    //TODO: change it so that the user can only add meat once
-                   addMeat(sandwich);
+                    addMeat(sandwich);
                     break;
                 case "2":
                     addCheese(sandwich);
@@ -442,40 +441,55 @@ public class Ui {
                 6. Lemonade
                 7. Ginger Ale
                 8. Juice""";
-        System.out.println(drinksMenu + "\nEnter: ");
-
-        String drinkInput = scanner.nextLine();
 
         DrinkFlavor drinkFlavor = null;
-//         TODO: add do while running loop
-        switch (drinkInput){
-            case "1":
-                drinkFlavor = DrinkFlavor.COKE;
-                break;
-            case "2":
-                drinkFlavor = DrinkFlavor.DIET_COKE;
-                break;
-            case "3":
-                drinkFlavor = DrinkFlavor.SPRITE;
-                break;
-            case "4":
-                drinkFlavor = DrinkFlavor.PEPSI;
-                break;
-            case "5":
-                drinkFlavor = DrinkFlavor.DIET_PEPSI;
-                break;
-            case "6":
-                drinkFlavor = DrinkFlavor.LEMONADE;
-                break;
-            case "7":
-                drinkFlavor = DrinkFlavor.GINGER_ALE;
-                break;
-            case "8":
-                drinkFlavor = DrinkFlavor.JUICE;
-                break;
-            default:
-                System.err.println("That's not a drinkFlavor!");
-        }
+        boolean running = true;
+
+        do {
+            System.out.println(drinksMenu + "\nEnter: ");
+
+            String drinkInput = scanner.nextLine();
+
+
+            switch (drinkInput) {
+                case "1":
+                    drinkFlavor = DrinkFlavor.COKE;
+                    running = false;
+                    break;
+                case "2":
+                    drinkFlavor = DrinkFlavor.DIET_COKE;
+                    running = false;
+                    break;
+                case "3":
+                    drinkFlavor = DrinkFlavor.SPRITE;
+                    running = false;
+                    break;
+                case "4":
+                    drinkFlavor = DrinkFlavor.PEPSI;
+                    running = false;
+                    break;
+                case "5":
+                    drinkFlavor = DrinkFlavor.DIET_PEPSI;
+                    running = false;
+                    break;
+                case "6":
+                    drinkFlavor = DrinkFlavor.LEMONADE;
+                    running = false;
+                    break;
+                case "7":
+                    drinkFlavor = DrinkFlavor.GINGER_ALE;
+                    running = false;
+                    break;
+                case "8":
+                    drinkFlavor = DrinkFlavor.JUICE;
+                    running = false;
+                    break;
+                default:
+                    System.err.println("That's not a drink!");
+            }
+        } while (running);
+
+
 
         String sizeMenu = """
                 What size of drinkFlavor would you like?
@@ -483,29 +497,38 @@ public class Ui {
                 2. Medium
                 3. Large
                 """;
-        System.out.println(sizeMenu + "\nEnter: ");
-
-        String sizeInput = scanner.nextLine();
 
         Size size = null;
 
-        switch (sizeInput){
-            case "1":
-                size = Size.SMALL;
-                break;
-            case "2":
-                size = Size.MEDIUM;
-                break;
-            case "3":
-                size = Size.LARGE;
-                break;
-            default:
-                System.err.println("That's not a size of drinkFlavor.");
-        }
+        boolean running1 = true;
+
+        do {
+            System.out.println(sizeMenu + "\nEnter: ");
+
+            String sizeInput = scanner.nextLine();
+
+
+            switch (sizeInput){
+                case "1":
+                    size = Size.SMALL;
+                    running1 = false;
+                    break;
+                case "2":
+                    size = Size.MEDIUM;
+                    running1 = false;
+                    break;
+                case "3":
+                    size = Size.LARGE;
+                    running1 = false;
+                    break;
+                default:
+                    System.err.println("That's not a size!");
+            }
+        } while (running1);
+
         Drink drink = new Drink(size,drinkFlavor);
         order.addDrink(drink);
         System.out.println(size.toString() + " " + drinkFlavor.toString() + " added to order.");
-
 
     }
 
@@ -513,16 +536,38 @@ public class Ui {
         Chips chips = new Chips();
         order.addChip(chips);
         System.out.println("Chips added to order");
-
     }
 
     private void checkout(Order order) {
         System.out.println("Here's your receipt.");
         System.out.println(order.processOrder(order));
-        ReceiptsFileManager manager = new ReceiptsFileManager();
-        manager.saveReceipt(order);
+        String orderConfirmation = """
+                Do you confirm your order?
+                1. Confirm
+                2. Cancel
+                """;
+        boolean running = true;
+        do {
+
+            System.out.println(orderConfirmation + "\nEnter: ");
+            String confirmationOutput = scanner.nextLine();
+
+            switch (confirmationOutput){
+                case "1":
+                    ReceiptsFileManager manager = new ReceiptsFileManager();
+                    manager.saveReceipt(order);
+                    System.out.println("Thank you for placing your order.");
+                    running = false;
+                    break;
+                case "2":
+                    running = false;
+                    System.out.println("You have cancelled your order.");
+                    break;
+                default:
+                    System.err.println("We are the confirmation page. Don't play any games!");
+            }
+        }
+        while (running);
     }
-
-
 }
 

@@ -63,70 +63,6 @@ public class Order{
         return price;
     }
 
-//    public void processOrder(){
-//        double cost = 0;
-//        String output;
-//
-//        System.out.println("Order for " + getOrderName());
-//
-//        if (sandwichs.size() > 0) {
-//            for (Sandwich a : getSandwichs()) {
-//                System.out.println("Sandwich");
-//                System.out.print("Sandwich Enums.Size: ");
-//                switch(a.getSize()){
-//                    case SMALL:
-//                        System.out.println("4\"");
-//                        break;
-//                    case MEDIUM:
-//                        System.out.println("8\"");
-//                        break;
-//                    case LARGE:
-//                        System.out.println("12\"");
-//                        break;
-//                    default:
-//                        throw new RuntimeException("The system has broken.");
-//
-//
-//                }
-//                System.out.print("Enums.Meat: " + a.getMeat());
-//                System.out.println(" | Extra Enums.Meat: " + a.isExtraMeat());
-//                System.out.print("Enums.Cheese: " + a.getCheese());
-//                System.out.println(" | Extra Enums.Cheese: " + a.isExtraCheese());
-//                System.out.println("Toppings");
-//                for (Topping t: a.getToppings()){
-//                    System.out.println(t);
-//                }
-//                System.out.println("Enums.Sauce: " + a.getSauce());
-//                cost += a.getPrice();
-//                System.out.println("Sandwich Price: $" + a.getPrice() );
-//
-//            }
-//
-//        }
-//        if (chips.size() > 0){
-//            System.out.println("Chips");
-//            double chipsCost = 0;
-//            for (Chip c : getChips()){
-//                cost += c.getPrice();
-//                chipsCost += c.getPrice();
-//            }
-//            System.out.println("Chips Price: $" + chipsCost);
-//
-//        }
-//
-//        if (drinks.size()>0){
-//            System.out.println("Drinks");
-//            double drinksCost = 0;
-//            for (Drink d :getDrinks()){
-//                System.out.println("Drink: " + d.getSize());
-//                cost += d.getPrice();
-//                drinksCost += d.getPrice();
-//            }
-//            System.out.println("Drinks Price: $" +drinksCost);
-//        }
-//        System.out.println("Total Cost: $" + cost);
-//    }
-
     public String processOrder(Order order){
         double cost = 0;
         StringBuilder output = new StringBuilder();
@@ -134,8 +70,10 @@ public class Order{
         output.append("Order for ").append(getOrderName()).append("\n");
 
         if (sandwichs.size() > 0) {
+            output.append("---------------------\n");
+            output.append("Sandwich\n");
             for (Sandwich a : getSandwiches()) {
-                output.append("Sandwich\n");
+                output.append("---------------------\n");
                 output.append("Sandwich Size: ");
                 switch(a.getSize()){
                     case SMALL:
@@ -169,6 +107,7 @@ public class Order{
 
         }
         if (chips.size() > 0){
+            output.append("---------------------\n");
             output.append("Chips\n");
             double chipsCost = 0;
             for (Chips c : getChips()){
@@ -180,6 +119,7 @@ public class Order{
         }
 
         if (drinks.size()>0){
+            output.append("---------------------\n");
             output.append("Drinks\n");
             double drinksCost = 0;
             for (Drink d :getDrinks()){
@@ -187,7 +127,6 @@ public class Order{
                 output.append("Size: ").append(d.getSize()).append("\n");
                 cost += d.getPrice();
                 drinksCost += d.getPrice();
-
             }
             output.append("Drinks Price: $").append(drinksCost).append("\n");
         }
