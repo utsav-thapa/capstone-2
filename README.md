@@ -99,7 +99,7 @@ A Java console-based sandwich ordering system that allows users to build custom 
 * Stored in:
 
   ```
-  src/main/resources/Receipts/yyyyMMdd-HHmmss.txt
+  Receipts/yyyyMMdd-HHmmss.txt
   ```
 * Includes:
 
@@ -128,6 +128,29 @@ A Java console-based sandwich ordering system that allows users to build custom 
 * File I/O
 * Console UI
 
+---
+
+## ⭐ Favorite Code Snippet
+
+One of the most important parts of the system is the checkout validation logic. It ensures that the user cannot proceed to checkout with an empty order:
+
+```bash
+case "4":
+    if (!(order.getDrinks().isEmpty()) || 
+        !(order.getSandwiches().isEmpty()) || 
+        !(order.getChips().isEmpty())) {
+
+        checkout(order);
+
+        if (order.isCheckOut()) {
+            running = false;
+        }
+
+    } else {
+        System.out.println("your order is empty.");
+    }
+    break;
+```
 ---
 
 ## 📌 Notes
