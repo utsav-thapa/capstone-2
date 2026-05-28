@@ -100,6 +100,7 @@ public class Order{
                     output.append(t).append("\n");
                 }
                 output.append("Sauce: ").append(a.getSauce()).append("\n");
+                output.append("Toasted: ").append(a.getToasted()).append("\n");
                 cost += a.getPrice();
                 output.append("Sandwich Price: $").append(a.getPrice()).append("\n");
 

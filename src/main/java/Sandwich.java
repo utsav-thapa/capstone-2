@@ -175,4 +175,8 @@ public class Sandwich {
         this.isToasted = isToasted;
 
     }
+
+    public boolean getToasted() {
+        return isToasted;
+    }
 }
