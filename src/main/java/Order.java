@@ -10,26 +10,9 @@ public class Order{
     private double price;
     private boolean checkOut;
 
-
-
-
     public Order(String orderName) {
 
         this.orderName = orderName;
-    }
-
-    public double getValue() {
-
-        for (Sandwich a: sandwichs){
-            price += a.getPrice();
-        }
-        for (Drink d : drinks) {
-            price += d.getPrice();
-        }
-        for (Chips c : chips) {
-            price += c.getPrice();
-        }
-        return price;
     }
 
     public void addSandwich(Sandwich s1) {
@@ -58,10 +41,6 @@ public class Order{
 
     public String getOrderName() {
         return orderName;
-    }
-
-    public double getPrice() {
-        return price;
     }
 
     public String processOrder(Order order){

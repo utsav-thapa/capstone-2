@@ -621,8 +621,6 @@ public class Ui {
 
     private void addDrink(Order order) {
 
-
-
         String sizeMenu = """
                 What size of drink would you like?
                 1. Small

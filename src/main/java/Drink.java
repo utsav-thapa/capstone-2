@@ -2,12 +2,9 @@ import Enums.Size;
 
 public class Drink {
     Size size;
-
     public Drink(Size size) {
-
         this.size = size;
     }
-
 
     public double getPrice() {
         double price = 0;
@@ -24,7 +21,6 @@ public class Drink {
             default:
                 throw new RuntimeException("Illegal size");
         }
-
         return price;
     }
 

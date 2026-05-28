@@ -12,7 +12,6 @@ public class Sandwich {
     private boolean extraCheese;
     private Sauce sauce;
     private boolean isToasted;
-
     private HashSet<Topping> toppings = new HashSet<>();
     private HashSet<Side> sides = new HashSet<>();
 
