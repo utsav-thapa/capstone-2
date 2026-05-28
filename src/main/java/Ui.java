@@ -93,7 +93,7 @@ public class Ui {
                 Below is a list of signature sandwiches we have.
                 1. BLT
                 2. Philly Cheese Steak
-                3. Turkey & Swiss
+                3. Grilled Chicken
                 4. Ham & Swiss
                 5. Veggie
                 """;
@@ -113,7 +113,7 @@ public class Ui {
                 running = false;
                 break;
             case "3":
-                turkeySwiss(sandwich);
+                grilledChicken(sandwich);
                 running = false;
                 break;
             case "4":
@@ -128,11 +128,13 @@ public class Ui {
                 System.err.println("We don't have that sandwich.");
         }
         } while (running);
+        order.addSandwich(sandwich);
     }
 
     private void blt(Sandwich sandwich) {
         sandwich.setBread(Bread.WHITE);
         sandwich.setSize(Size.MEDIUM);
+        sandwich.setMeat(Meat.BACON);
         sandwich.setCheese(Cheese.CHEDDAR);
         sandwich.addTopping(Topping.LETTUCE);
         sandwich.addTopping(Topping.TOMATOES);
@@ -141,23 +143,50 @@ public class Ui {
 
     private void philly(Sandwich sandwich) {
 // TODO
+        sandwich.setBread(Bread.WHITE);
+        sandwich.setSize(Size.MEDIUM);
+        sandwich.setMeat(Meat.STEAK);
+        sandwich.setCheese(Cheese.AMERICAN);
+        sandwich.addTopping(Topping.PEPPERS);
+        sandwich.setSauce(Sauce.MAYO);
+        sandwich.isToasted(true);
+
     }
 
-    private void turkeySwiss(Sandwich sandwich) {
-// TODO
-
+    private void grilledChicken(Sandwich sandwich) {
+        sandwich.setBread(Bread.WHITE);
+        sandwich.setSize(Size.MEDIUM);
+        sandwich.setMeat(Meat.CHICKEN);
+        sandwich.setCheese(Cheese.AMERICAN);
+        sandwich.addTopping(Topping.LETTUCE);
+        sandwich.addTopping(Topping.TOMATOES);
+        sandwich.addTopping(Topping.ONIONS);
+        sandwich.setSauce(Sauce.RANCH);
+        sandwich.isToasted(true);
     }
 
     private void hamSwiss(Sandwich sandwich) {
-// TODO
-
-
+        sandwich.setBread(Bread.WHITE);
+        sandwich.setSize(Size.MEDIUM);
+        sandwich.setMeat(Meat.HAM);
+        sandwich.setCheese(Cheese.SWISS);
+        sandwich.addTopping(Topping.LETTUCE);
+        sandwich.addTopping(Topping.TOMATOES);
+        sandwich.setSauce(Sauce.MAYO);
+        sandwich.isToasted(true);
     }
 
     private void veggie(Sandwich sandwich) {
-// TODO
-
-
+        sandwich.setBread(Bread.WHEAT);
+        sandwich.setSize(Size.MEDIUM);
+        sandwich.setMeat(Meat.NO_MEAT);
+        sandwich.setCheese(Cheese.CHEDDAR);
+        sandwich.addTopping(Topping.LETTUCE);
+        sandwich.addTopping(Topping.MUSHROOMS);
+        sandwich.addTopping(Topping.GUACAMOLE);
+        sandwich.addTopping(Topping.CUCUMBERS);
+        sandwich.addTopping(Topping.ONIONS);
+        sandwich.isToasted(true);
     }
 
 
@@ -176,6 +205,7 @@ public class Ui {
                     2. Cheese
                     3. Other toppings
                     4. Select Sauces
+                    5. Sides
                     0. Exit
                     """;
         do {
@@ -197,6 +227,9 @@ public class Ui {
                 case "4":
                     addSauce(sandwich);
                     break;
+                case "5":
+                    addSides(sandwich);
+                    break;
                 case "0":
                     toasted(sandwich);
                     running = false;
@@ -206,6 +239,46 @@ public class Ui {
             }
         } while (running);
         order.addSandwich(sandwich);
+    }
+
+    private void addSides(Sandwich sandwich) {
+        String sidesMenu = """
+                Below are the sides we have.
+                1. Au Jus
+                2. Sauce
+                0. Exit""";
+
+        boolean running = true;
+
+        do {
+        System.out.println(sidesMenu + "\nEnter: ");
+        String sidesInput = scanner.nextLine();
+
+        switch (sidesInput){
+            case "1":
+                addSide(sandwich,Side.AU_JUS);
+               sandwich.addSide(Side.AU_JUS);
+                break;
+            case "2":
+                sandwich.addSide(Side.SAUCE);
+                break;
+            case "3":
+                running = false;
+                break;
+            default:
+                System.out.println("We don't have that side.");
+        }
+
+        } while (running);
+    }
+
+    private void addSide(Sandwich sandwich, Side side) {
+        if (!sandwich.getSides().contains(side)) {
+            sandwich.addSide(side);
+            System.out.println(side.toString() + " added in sandwich.");
+        } else {
+            System.out.println("You already have " + side.toString() +" in your sandwich.");
+        }
     }
 
     private static void toasted(Sandwich sandwich) {
@@ -421,12 +494,14 @@ public class Ui {
         } while (running);
 
         sandwich.setCheese(cheese);
+        System.out.println(cheese.toString() + " Cheese selected.");
 
         if (!cheese.equals(Cheese.NO_CHEESE)) {
             System.out.println("Would you like extra cheese? (Y/N)");
             String extraCheese = scanner.nextLine();
             if (extraCheese.equalsIgnoreCase("Y")) {
                 sandwich.setExtraCheese(true);
+                System.out.println("Extra cheese added.");
             }
         }
     }
@@ -506,34 +581,44 @@ public class Ui {
                 5. Thousand Islands
                 6. Vinaigrette
                 """;
+        boolean running = true;
+        do {
 
-        System.out.println(sauceMenu);
+            System.out.println(sauceMenu + "\nEnter: ");
 
-        String sauceInput = scanner.nextLine();
+            String sauceInput = scanner.nextLine();
 
-        switch (sauceInput){
-            case "1":
-                sandwich.setSauce(Sauce.MAYO);
-                break;
-            case "2":
-                sandwich.setSauce(Sauce.MUSTARD);
-                break;
-            case "3":
-                sandwich.setSauce(Sauce.KETCHUP);
-                break;
-            case "4":
-                sandwich.setSauce(Sauce.RANCH);
-                break;
-            case "5":
-                sandwich.setSauce(Sauce.THOUSAND_ISLANDS);
-                break;
-            case "6":
-                sandwich.setSauce(Sauce.VINAIGRETTE);
-                break;
-            default:
-                System.err.println("That is not a sauce we have.");
-        }
+            switch (sauceInput) {
+                case "1":
+                    sandwich.setSauce(Sauce.MAYO);
+                    running = false;
+                    break;
+                case "2":
+                    sandwich.setSauce(Sauce.MUSTARD);
+                    running = false;
+                    break;
+                case "3":
+                    sandwich.setSauce(Sauce.KETCHUP);
+                    running = false;
+                    break;
+                case "4":
+                    sandwich.setSauce(Sauce.RANCH);
+                    running = false;
+                    break;
+                case "5":
+                    sandwich.setSauce(Sauce.THOUSAND_ISLANDS);
+                    running = false;
+                    break;
+                case "6":
+                    sandwich.setSauce(Sauce.VINAIGRETTE);
+                    running = false;
+                    break;
+                default:
+                    System.err.println("That is not a sauce we have.");
+            }
+        } while (running);
     }
+
 
     private void addDrink(Order order) {
         String drinksMenu = """
@@ -593,7 +678,6 @@ public class Ui {
                     System.err.println("That's not a drink!");
             }
         } while (running);
-
 
 
         String sizeMenu = """

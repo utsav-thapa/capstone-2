@@ -14,6 +14,7 @@ public class Sandwich {
     private boolean isToasted;
 
     private HashSet<Topping> toppings = new HashSet<>();
+    private HashSet<Side> sides = new HashSet<>();
 
     public Sandwich(){
     }
@@ -21,7 +22,6 @@ public class Sandwich {
     public void setMeat(Meat meat) {
 
         this.meat = meat;
-        System.out.println(meat.toString() + " Selected.");
     }
 
     public void setBread(Bread bread) {
@@ -53,12 +53,8 @@ public class Sandwich {
 
     public void setCheese(Cheese cheese) {
         this.cheese = cheese;
-        System.out.println(cheese.toString() + " Cheese selected.");
     }
 
-//    public void setToppings(HashSet<Topping> toppings) {
-//        this.toppings = toppings;
-//    }
 
 
     public double getPrice() {
@@ -178,5 +174,13 @@ public class Sandwich {
 
     public boolean getToasted() {
         return isToasted;
+    }
+
+    public void addSide(Side side) {
+        sides.add(side);
+    }
+
+    public HashSet<Side> getSides(){ return sides;
+
     }
 }
