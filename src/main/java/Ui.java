@@ -1,4 +1,5 @@
 import Enums.*;
+import Enums.DrinkFlavor;
 
 import java.util.Scanner;
 
@@ -66,7 +67,12 @@ public class Ui {
                     addChips(order);
                     break;
                 case "4":
-                    checkout(order);
+                    if (order != null) {
+                        checkout(order);
+                        running = false;
+                    } else {
+                        System.out.println("your order is empty.");
+                    }
                     break;
                 case "0":
                     running = false;
@@ -122,6 +128,7 @@ public class Ui {
                     System.err.println("Wrong input!");
             }
         } while (running);
+        order.addSandwich(sandwich);
     }
 
     private void breadSizeSelection(Sandwich sandwich) {
@@ -272,8 +279,6 @@ public class Ui {
         Cheese cheese = null;
         boolean running = true;
         do {
-
-
             String cheeseOptions = """
                     Here are the cheese options.
                     1. American
@@ -441,32 +446,82 @@ public class Ui {
 
         String drinkInput = scanner.nextLine();
 
+        DrinkFlavor drinkFlavor = null;
+//         TODO: add do while running loop
+        switch (drinkInput){
+            case "1":
+                drinkFlavor = DrinkFlavor.COKE;
+                break;
+            case "2":
+                drinkFlavor = DrinkFlavor.DIET_COKE;
+                break;
+            case "3":
+                drinkFlavor = DrinkFlavor.SPRITE;
+                break;
+            case "4":
+                drinkFlavor = DrinkFlavor.PEPSI;
+                break;
+            case "5":
+                drinkFlavor = DrinkFlavor.DIET_PEPSI;
+                break;
+            case "6":
+                drinkFlavor = DrinkFlavor.LEMONADE;
+                break;
+            case "7":
+                drinkFlavor = DrinkFlavor.GINGER_ALE;
+                break;
+            case "8":
+                drinkFlavor = DrinkFlavor.JUICE;
+                break;
+            default:
+                System.err.println("That's not a drinkFlavor!");
+        }
+
         String sizeMenu = """
-                What size of drink would you like?
+                What size of drinkFlavor would you like?
                 1. Small
                 2. Medium
                 3. Large
                 """;
         System.out.println(sizeMenu + "\nEnter: ");
 
+        String sizeInput = scanner.nextLine();
 
-        switch (drinkInput){
+        Size size = null;
+
+        switch (sizeInput){
             case "1":
-
-
+                size = Size.SMALL;
+                break;
+            case "2":
+                size = Size.MEDIUM;
+                break;
+            case "3":
+                size = Size.LARGE;
+                break;
+            default:
+                System.err.println("That's not a size of drinkFlavor.");
         }
+        Drink drink = new Drink(size,drinkFlavor);
+        order.addDrink(drink);
+        System.out.println(size.toString() + " " + drinkFlavor.toString() + " added to order.");
+
 
     }
 
     private void addChips(Order order) {
+        Chips chips = new Chips();
+        order.addChip(chips);
+        System.out.println("Chips added to order");
 
     }
 
     private void checkout(Order order) {
-
+        System.out.println("Here's your receipt.");
+        System.out.println(order.processOrder(order));
+        ReceiptsFileManager manager = new ReceiptsFileManager();
+        manager.saveReceipt(order);
     }
-
-
 
 
 }

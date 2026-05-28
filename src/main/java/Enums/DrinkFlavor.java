@@ -1,6 +1,6 @@
 package Enums;
 
-public enum Drink {
+public enum DrinkFlavor {
     COKE,
     DIET_COKE,
     PEPSI,

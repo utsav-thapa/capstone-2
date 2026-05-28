@@ -1,12 +1,11 @@
 import Enums.Topping;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Order{
     private ArrayList<Sandwich> sandwichs = new ArrayList<>();
     private ArrayList<Drink> drinks = new ArrayList<>();
-    private ArrayList<Chip> chips = new ArrayList<>();
+    private ArrayList<Chips> chips = new ArrayList<>();
     private String orderName;
     private double price;
 
@@ -26,7 +25,7 @@ public class Order{
         for (Drink d : drinks) {
             price += d.getPrice();
         }
-        for (Chip c : chips) {
+        for (Chips c : chips) {
             price += c.getPrice();
         }
         return price;
@@ -36,7 +35,7 @@ public class Order{
         sandwichs.add(s1);
     }
 
-    public void addChip(Chip c1){
+    public void addChip(Chips c1){
         chips.add(c1);
     }
 
@@ -52,7 +51,7 @@ public class Order{
         return drinks;
     }
 
-    public ArrayList<Chip> getChips() {
+    public ArrayList<Chips> getChips() {
         return chips;
     }
 
@@ -172,7 +171,7 @@ public class Order{
         if (chips.size() > 0){
             output.append("Chips\n");
             double chipsCost = 0;
-            for (Chip c : getChips()){
+            for (Chips c : getChips()){
                 cost += c.getPrice();
                 chipsCost += c.getPrice();
             }
@@ -184,7 +183,8 @@ public class Order{
             output.append("Drinks\n");
             double drinksCost = 0;
             for (Drink d :getDrinks()){
-                output.append("Drink: ").append(d.getSize()).append("\n");
+                output.append("Drink: ").append(d.getDrink()).append("\n");
+                output.append("Size: ").append(d.getSize()).append("\n");
                 cost += d.getPrice();
                 drinksCost += d.getPrice();
 
