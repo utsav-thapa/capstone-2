@@ -133,24 +133,17 @@ A Java console-based sandwich ordering system that allows users to build custom 
 
 ## ⭐ Favorite Code Snippet
 
-One of the most important parts of the system is the checkout validation logic. It ensures that the user cannot proceed to checkout with an empty order:
+One of my favorite parts of the project is the validation logic that prevents users from selecting meat multiple times for the same sandwich.
 
 ```bash
-case "4":
-    if (!(order.getDrinks().isEmpty()) || 
-        !(order.getSandwiches().isEmpty()) || 
-        !(order.getChips().isEmpty())) {
+private void addMeat(Sandwich sandwich) {
 
-        checkout(order);
+        if (sandwich.getMeat() != null && !sandwich.getMeat().equals(Meat.NO_MEAT)) {
 
-        if (order.isCheckOut()) {
-            running = false;
+            System.err.println("You have already selected meat: " + sandwich.getMeat());
+
+            return;
         }
-
-    } else {
-        System.out.println("your order is empty.");
-    }
-    break;
 ```
 ---
 
